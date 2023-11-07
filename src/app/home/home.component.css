@@ -1,3 +1,10 @@
 .bg-white {
-    background-color: #c79d28 !important;
+    background-color: #D9821B !important;
 }
+.custom-button {
+    background-color: #D9821B; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Estilo de sombra personalizado */
+    font-weight: bold;
+    /* Otros estilos de botón personalizados */
+  }
