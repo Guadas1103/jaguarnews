@@ -1,0 +1,22 @@
+/*FORMAS____________________________*/
+.icono-login{
+    font-size: 8rem; 
+    margin: 20px;
+}
+
+/*COLORES____________________________*/
+.btn-guinda{
+    color: white;
+    background-color: #8C0335;
+}
+
+/*FUENTES____________________________*/
+.card-header {
+    font-family: 'Bebas', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.btn {
+    font-family: 'Montserrat', sans-serif;
+}
