@@ -1,5 +1,12 @@
-.bg-white {
+.bg {
     background-color: #D9821B !important;
+}
+
+.bg-noticia {
+    background-color: #ffffff !important;
+}
+.bg-area-noticias {
+    background-color: #F2F2F2 !important;
 }
 .custom-button {
     background-color: #D9821B; /* Color de fondo del botón */
