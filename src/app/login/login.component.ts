@@ -26,7 +26,7 @@ export class LoginComponent {
     this.showLoading = true
     this.api.login(this.email, this.pass).subscribe({
       next: respuestas => {
-        this.msg.success("Bienvenido a JaguarNews")
+        this.msg.warning("Bienvenido a JaguarNews")
         localStorage.setItem("correo", this.email)
 /*
         const user = await this.afAuth.currentUser;
