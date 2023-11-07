@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiRestService } from '../api-rest.service';
-
+import { Router } from '@angular/router';
 
  
 @Component({
@@ -9,18 +9,14 @@ import { ApiRestService } from '../api-rest.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  preguntas = [
-    {no:1, pregunta: '¿Cuál?', categoria:"", correo:"", fecha:"", id:""},
-   
-  ]
-  newP={categoria:"", pregunta:""}
-  modP={categoria:"", pregunta:"", id:""}
-  constructor(private api: ApiRestService){}
+  constructor(private api: ApiRestService, private router: Router) {}
   ngOnInit():void {
-    this.consulta()
+    
   }
-
-
+  navigateToHome() {
+    this.router.navigate(['/home']);
+  }
+/*
   consulta(){
    this.api.getAllPreguntas().subscribe({
     next: datos =>{
@@ -73,5 +69,5 @@ export class HomeComponent {
   }
   editarPregunta(p:any){
     this.modP = JSON.parse(JSON.stringify(p));
-  }
+  }*/
 }
