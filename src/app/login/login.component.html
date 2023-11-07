@@ -1,11 +1,13 @@
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <i class="bi bi-chat-left-dots-fill"></i>
-            &nbsp;Foro Dudas ITSCH
-          </a>
-    </div>
-</nav>
+<div class="container-fluid bg-light p-0 sticky-top" >
+    <nav class="navbar navbar-expand-lg shadow sticky-top p-0 bg">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center px-4 px-lg-5" href="#">
+                <img src="../../assets/Logo_JaguarNews.png" width="150" class="d-inline-block align-top" alt="">
+                &nbsp;
+            </a>
+        </div>
+    </nav>
+</div>
 <div class="container">
     <div class="row">
         <div class="col"></div>
@@ -14,7 +16,11 @@
                 <div class="card-header">
                     Inicio de Sesion
                 </div>
+
                 <div class="card-body">
+
+                        <i class="bi bi-person-circle icono-login"></i>
+                    
                     <div class="input-group">
                         <div class="input-group-text">
                             <i class="bi bi-envelope"></i>
@@ -32,7 +38,7 @@
                    Error de usuario y/o contraseña
                   </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary float-end" value="Entrar" (click)="login()">
+                    <button class="btn btn-guinda float-end" value="Entrar" (click)="login()">
                         <div class="spinner-border spinner-border-sm" role="status" *ngIf="showLoading">
                           </div>
                     Entrar
