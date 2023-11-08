@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .bg {
     background-color: #D9821B !important;
 }
@@ -18,4 +21,150 @@
   }
   .with-shadow {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajusta los valores según tu preferencia */
+}
+
+/* Button */
+.btn {
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: .5s;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+background-color: #D9731A; /* Color de fondo */
+  color: #0D0D0D; /* Color del texto */
+  border: none; /* Borde del botón */
+  padding: 8px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  font-size: 30px;
+  text-align: center; /* Alineación del texto */
+
+  display: inline-block; /* Mostrar en línea */
+  font-size: 16px; /* Tamaño de fuente */
+  margin: 2px; /* Márgenes externos */
+  
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 2px;
+}
+
+/**** Template CSS ****/
+:root {
+    --primary: #D98218;
+    --secondary: #D9731A;
+    --light: #F2F2F2;
+    --dark: #A6033F;
+  }
+  
+  .fw-medium {
+    font-weight: 600 !important;
+  }
+  
+  .back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+  }
+
+
+/* Navbar */
+.navbar .dropdown-toggle::after {
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.navbar-light {
+    background-color: #D98218;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    margin-right: 30px;
+    padding: 25px 0;
+    color: #D98218;
+    font-size: 25px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link.active {
+    color: black;
+    background-color: #D98218;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-light .navbar-nav .nav-link  {
+        margin-right: 0;
+        padding: 10px 0;
+    }
+
+    .navbar-light .navbar-nav {
+        border-top: 1px solid #D98218;
+    }
+}
+
+.navbar-light .navbar-brand,
+.navbar-light a.btn {
+    height: 75px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #0D0D0D;
+    font-weight: 500;
+}
+
+.navbar-light.sticky-top {
+    top: -100px;
+    transition: .5s;
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        border: none;
+        margin-top: 0;
+        top: 150%;
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        top: 100%;
+        visibility: visible;
+        transition: .5s;
+        opacity: 1;
+    }
 }
