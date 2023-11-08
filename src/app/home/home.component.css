@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .bg {
     background-color: #D9821B !important;
 }
@@ -16,8 +19,6 @@
     font-family: 'Bebas Neue', sans-serif;
     /* Otros estilos de botón personalizados */
   }
-
-
 
   /* Footer */
 .footer {
@@ -59,3 +60,80 @@
     padding-right: 0;
     border-right: none;
 }
+  .with-shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajusta los valores según tu preferencia */
+}
+
+/* Button */
+.btn {
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: .5s;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+background-color: #D9731A; /* Color de fondo */
+  color: #0D0D0D; /* Color del texto */
+  border: none; /* Borde del botón */
+  padding: 8px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  font-size: 30px;
+  text-align: center; /* Alineación del texto */
+
+  display: inline-block; /* Mostrar en línea */
+  font-size: 16px; /* Tamaño de fuente */
+  margin: 2px; /* Márgenes externos */
+  
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 2px;
+}
+
+/**** Template CSS ****/
+:root {
+    --primary: #D98218;
+    --secondary: #D9731A;
+    --light: #F2F2F2;
+    --dark: #A6033F;
+  }
+  
+  .fw-medium {
+    font-weight: 600 !important;
+  }
+  
+  .back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+  }
+
+
