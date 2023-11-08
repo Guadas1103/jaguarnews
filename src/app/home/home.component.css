@@ -13,6 +13,6 @@
     color: #fff; /* Color del texto del botón */
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Estilo de sombra personalizado */
     font-weight: bold;
-    font-family: "Bebas";
+    font-family: 'Bebas Neue', sans-serif;
     /* Otros estilos de botón personalizados */
   }
