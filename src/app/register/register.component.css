@@ -31,20 +31,24 @@
     vertical-align: middle;
     margin-left: 8px;
 }
+.navbar-light {
+    background-color: #D98218;
+}
 
 .navbar-light .navbar-nav .nav-link {
     margin-right: 30px;
-    padding: 10px;
-    height: 60px;
-    color: #D9731A;
-    font-size: 20px;
+    padding: 25px 0;
+    color: #D98218;
+    font-size: 25px;
     text-transform: uppercase;
     outline: none;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: black;
+    background-color: #D98218;
 }
 
 @media (max-width: 991.98px) {
@@ -54,7 +58,7 @@
     }
 
     .navbar-light .navbar-nav {
-        border-top: 1px solid #EEEEEE;
+        border-top: 1px solid #D98218;
     }
 }
 
@@ -64,7 +68,7 @@
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: var(--dark);
+    color: #0D0D0D;
     font-weight: 500;
 }
 
@@ -82,7 +86,6 @@
         opacity: 0;
         visibility: hidden;
         transition: .5s;
-        
     }
 
     .navbar .nav-item:hover .dropdown-menu {
@@ -93,7 +96,40 @@
     }
 }
 
+/*** Body ***/
+body {
+    background-color: #F2F2F2;
+    color: #000000;
+}
 
+h1{
+    color: #000000;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+
+h3{
+    color: #000000;
+}
+
+p{
+    font-family: 'Montserrat', sans-serif;
+}
+i, label{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #F2F2F2;
+}
+label{
+    color: #0D0D0D;
+}
+
+small{
+    color: #000000;
+}
+.p{
+    font-family: 'Montserrat', sans-serif;
+  }
 
 /*** Button ***/
 .btn {
@@ -106,64 +142,39 @@
 
 .btn.btn-primary,
 .btn.btn-secondary {
-background-color: #D9731A; /* Color de fondo */
-  color: #0D0D0D; /* Color del texto */
-  border: none; /* Borde del botón */
-  padding: 8px; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  font-size: 30px;
-  text-align: center; /* Alineación del texto */
-
-  display: inline-block; /* Mostrar en línea */
-  font-size: 16px; /* Tamaño de fuente */
-  margin: 2px; /* Márgenes externos */
-  
+    background-color: #D9731A; /* Color de fondo */
+    color: #0D0D0D; /* Color del texto */
+    border: none; /* Borde del botón */
+    padding: 8px; /* Aumentar el espaciado interno para duplicar el tamaño del botón */
+    border-radius: 16px; /* Aumentar el tamaño de los bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    text-align: center; /* Alineación del texto */
+    display:inline-flexbox; /* Mostrar en línea */
+    font-size: 20px; /* Aumentar el tamaño de la fuente */
+    margin: 2px; /* Márgenes externos */
 }
 
-.btn-square {
-    width: 38px;
-    height: 38px;
+.btn.btn-secondary{
+    padding: 8px;
+    font-size: 20px;
 }
 
-.btn-sm-square {
-    width: 32px;
-    height: 32px;
+.btn.btn-primary:hover,
+.btn.btn-secondary:hover {
+    background-color: #A6033F; /* Cambiar el color de fondo al pasar el ratón */
+    color: #FFFFFF; /* Cambiar el color del texto al pasar el ratón */
 }
 
-.btn-lg-square {
-    width: 48px;
-    height: 48px;
+.btn.btn-primary:active,
+.btn.btn-secondary:active {
+    background-color: #D98218; /* Cambiar el color de fondo al hacer clic */
 }
 
-.btn-square,
-.btn-sm-square,
-.btn-lg-square {
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: normal;
-    border-radius: 2px;
-}
 
-/*** Footer ***/
+/* Footer */
 .footer {
-   background-color: #A6033F;
-    background-size: cover;
-}
-
-.footer .btn.btn-social {
-    margin-right: 5px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--light);
-    border: 1px solid #FFFFFF;
-    border-radius: 35px;
-    transition: .3s;
+    background-color: #8C0335;
+    
 }
 
 .footer .btn.btn-social:hover {
@@ -195,27 +206,12 @@ background-color: #D9731A; /* Color de fondo */
     box-shadow: none;
 }
 
-.footer .copyright {
-    padding: 25px 0;
-    font-size: 15px;
-    border-top: 1px solid rgba(256, 256, 256, .1);
-}
-
-.footer .copyright a {
-    color: var(--light);
-}
-
-.footer .footer-menu a {
-    margin-right: 15px;
-    padding-right: 15px;
-    border-right: 1px solid rgba(255, 255, 255, .3);
-}
-
 .footer .footer-menu a:last-child {
     margin-right: 0;
     padding-right: 0;
     border-right: none;
 }
+
 
 
   .page-header {
@@ -225,7 +221,4 @@ background-color: #D9731A; /* Color de fondo */
     height: 50vh; /* Ajusta la altura según tus necesidades */
   }  
 
-  .p{
-    font-family: 'Montserrat', sans-serif;
-
-  }
+  
