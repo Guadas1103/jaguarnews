@@ -145,12 +145,29 @@
                             
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
+                            <div class="container-fluid">
+                                <div class="row">
+                                  <div class="col-md-12 ms-auto">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Mensaje:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
+                                    </form>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 ms-auto">
+                                        <div class="gap-2 d-md-flex justify-content-md-end mt-auto">
+                                            <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary">Enviar</button>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
+                </div>   
             </div>
             <!-- FIN: Modal Para Comentarios -->
         </div>
