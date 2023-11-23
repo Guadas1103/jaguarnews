@@ -49,14 +49,18 @@
     </div>
     <!-- topnab// -->
 
+    
+
     <!-- Imagen y texto de sistemas -->
-    <div class="container-fluid p-0 mt-3">
+
+    <div class="container-with-background p-0 mt-6">
+        
         <div class="row align-items-center justify-content-center">
             <div class="col-md-3 text-center ">
                 <img src="../../../assets/carreras/sistemas.png" alt="Título de la página" class="img-fluid" width="200">
             </div>
-            <div class="col-md-9 text-center text-md-start">
-                <h2>INGENIERÍA EN SISTEMAS COMPUTACIONALES</h2>
+            <div class="col-md-9 text-center text-md texto">
+                <h2 >INGENIERÍA EN SISTEMAS COMPUTACIONALES</h2>
             </div>
         </div>
     </div>
@@ -64,13 +68,14 @@
     
     
     <!--container-->
-    <div class="container-xxl service py-5">
-        <div class="container" >
+    <div class="container-xxl service py-5 mb-5">
+        <div class="container container-two" >
+            
 
             <!-- descripción de la carrera -->
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">   
                 <hr>
-                <h1 class="mb-3">¿Qué es un ingeniero en Sistemas Computacionales?</h1>
+                <h1 class="mb-3 texto">¿Qué es un ingeniero en Sistemas Computacionales?</h1>
                 <br>
                 <p>El ingeniero en Sistemas computacionales es una persona profesional, comprometida con la generación de tecnología para el progreso de México. Es capaz de realizar programas específicos, como aplicaciones de oficina, juegos, películas animadas, software administrativo y científico, aplica y crea nuevas tecnologías y sistemas de administración y redes para intercambio de información, como la internet.</p>
                 <br>
@@ -98,21 +103,18 @@
                             <p class="card-text" id="textoCorto">
                                 Buenos días #FuturosIngenierosEnSistemas 😎 Un día como hoy pero de 1815 hace George Boole, considerado como uno de los fundadores del campo de las Ciencias de la Computación.
                             </p>
-                            <p class="card-text" id="textoLargo" style="display: none;">
-                                Buenos días #FuturosIngenierosEnSistemas 😎 Un día como hoy pero de 1815 hace George Boole, considerado como uno de los fundadores del campo de las Ciencias de la Computación. 
-                                Más texto que deseas mostrar cuando se haga clic en "Leer más...".
-                            </p>
-                            <a href="/sistemas" id="leerMas">Leer más...</a>
+                            
+                            <a href="#" id="textoLargo" data-bs-toggle="modal" data-bs-target="#imagenModal">Leer más...</a>
                         </div>
                     </div>
                 </div>
                 <div class="row g-0">
-                    <div class="row align-items-center justify-content-center">
+                    <div class="row align-items-center justify-content-center mb-3">
                         <div class="col-md-6 text-center text-md-start">
                             <i class="bi bi-hand-thumbs-up display-6"></i>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
-                            <a href="/sistema" id="comentario">Comentario ></a>
+                            <a href="#" id="comentario" data-bs-toggle="modal" data-bs-target="#comentarioModal"><b>Comentarios></b></a>
                         </div>
                     </div>
                 </div>
@@ -130,41 +132,62 @@
                 </div>
             </div>
             <!-- FIN: Modal para mostrar la imagen en grande -->
+            
+            <!-- Modal Para Comentarios -->
+            <div class="modal fade" id="comentarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="comentarioModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- FIN: Modal Para Comentarios -->
         </div>
     </div>
     
     
     <!-- Footer Start -->
-<div class="container-fluid  text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-lg-7 col-md-6">
-                <h4 class="text-light mb-4">Dirección</h4>
-                <p class="mb-2">
-                    <i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;Av. Ing. Carlos Rojas Gutierrez 2120, Fracc. Valle <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;De La Herradura, 61100 Cd Hidalgo, Mich.
-                  </p>
-                  
-                <p class="mb-2"><i class="bi bi-telephone-fill"></i>&nbsp;&nbsp;+52 786 154 9000</p>
-                <p class="mb-2"><i class="bi bi-envelope-fill"></i>&nbsp;&nbsp;itsch@hotmail.com</p>
-            </div>
-           
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Siguenos en...</h4>
-                <div class="d-flex pt-2">
+    <div class="container-fluid  text-light footer mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="wrapper">
+            <div class="row g-5">
+                <div class="col-lg-7 col-md-6">
+                    <h4 class="text-light mb-4">Dirección</h4>
+                    <p class="mb-2">
+                        <i class="bi bi-geo-alt-fill"></i>&nbsp;&nbsp;Av. Ing. Carlos Rojas Gutierrez 2120, Fracc. Valle <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;De La Herradura, 61100 Cd Hidalgo, Mich.
+                    </p>
+                    
+                    <p class="mb-2"><i class="bi bi-telephone-fill"></i>&nbsp;&nbsp;+52 786 154 9000</p>
+                    <p class="mb-2"><i class="bi bi-envelope-fill"></i>&nbsp;&nbsp;itsch&#64;hotmail.com</p>
+                </div>
+            
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Siguenos en...</h4>
+                    <div class="d-flex pt-2">
 
-                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/TecNM.Campus.Ciudad.Hidalgo/?locale=es_LA" target="_blank">
-                      <i class="fab fa-facebook-f"></i> facebook
-                    </a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/@tecnmcampusciudadhidalgo4468" target="_blank">
-                      <i class="fab fa-youtube"></i> YouTube
-                    </a>
-
+                        <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/TecNM.Campus.Ciudad.Hidalgo/?locale=es_LA" target="_blank">
+                        <i class="fab fa-facebook-f"></i> facebook
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/@tecnmcampusciudadhidalgo4468" target="_blank">
+                        <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                    </div>
                 </div>
             </div>
-            
+            </div>
         </div>
     </div>
-</div>
-<!-- Footer End -->
+    <!-- Footer End -->
     
-    </body>
+</body>

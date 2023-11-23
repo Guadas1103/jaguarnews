@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiRestService } from '../../api-rest.service';
 import { Router } from '@angular/router'
 
+
 @Component({
   selector: 'app-sistema',
   templateUrl: './sistema.component.html',
@@ -15,5 +16,7 @@ export class SistemaComponent {
   this.router.navigate(['/home']);
   }
 }
+
+
 
 
