@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { ApiRestService } from '../api-rest.service';
+import { Component,  Inject} from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-/*import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';*/
+import { ApiRestService } from '../api-rest.service';
+
+
+/*import { AngularFirestore } from '@angular/fire/firestore';*/
 
 
 @Component({
@@ -19,39 +20,35 @@ export class LoginComponent {
   constructor(
     private router: Router, 
     private api: ApiRestService, 
-    private msg: ToastrService,
-    /*private afAuth: AngularFireAuth,
-    private firestore: AngularFirestore*/){}
-  login(){
-    this.showLoading = true
-    this.api.login(this.email, this.pass).subscribe({
-      next: respuestas => {
-        this.msg.warning("Bienvenido a JaguarNews")
-        localStorage.setItem("correo", this.email)
-/*
-        const user = await this.afAuth.currentUser;
+    private msg: ToastrService
+  
     
-        if (user) {
-          // Vincula datos a la base de datos
-          const datos = {
-            nombre: 'Ejemplo', // Puedes reemplazar esto con los datos del usuario
-            email: this.email,
-            // Otras propiedades de datos que desees vincular
-          };
-          await this.vincularCuentaConDatos(user.uid, datos);
-        } else {
-          console.log('Usuario no autenticado.');
-        }*/
+    /*private firestore: AngularFirestore*/){}
+  login(){
+    this.showLoading = true;
 
+  this.api.login(this.email, this.pass).subscribe({
+    next: respuestas => {
+      this.msg.warning("Bienvenido a JaguarNews");
+      localStorage.setItem("correo", this.email);
+
+      // Verificar el correo electrónico y redirigir según la condición
+      if (this.email === 'lupdom19@gmail.com') {
+        this.router.navigate(['/home-admin']);
+      } else {
         this.router.navigate(['/home']);
-      },
-      error: problemilla => {
-        this.msg.error("Error en el usuario o contraseña")
-      
-        this.showError = true
-        this.showLoading = false
       }
-    })
+    },
+    error: problemilla => {
+      this.msg.error("Error en el usuario o contraseña");
+      this.showError = true;
+    },
+    complete: () => {
+      // Restablecer showLoading a false después de que se completa la operación
+      this.showLoading = false;
+    }
+    });
       
   }
+
 }

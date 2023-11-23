@@ -19,20 +19,20 @@
                     <a >GENERAL</a>
                 </button>
 
-                <button type="button" class="btn btn-primary w-auto " style="margin-right: 30px;">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">CARRERAS</a>
-                        <div class="dropdown-menu fade-up m-0">
-                            <a href="" class="dropdown-item">TIC´s</a>
-                            <a href="" class="dropdown-item">Nanotecnología</a>
-                            <a href="" class="dropdown-item">Mecatrónica</a>
-                            <a href="" class="dropdown-item">Gestión empresarial</a>
-                            <a href="" class="dropdown-item">Bioquímica</a>
-                            <a href="" class="dropdown-item">Sistemas computacionales</a>
-                            <a href="" class="dropdown-item">Industrial</a>
-                        </div>
-                    </div>
-                </button>
+                <div ngbDropdown class="btn-group">
+                    <button id="dropdownMenuButton" ngbDropdownToggle type="button" class="btn btn custom-button dropdown-toggle w-auto" aria-expanded="false" style="margin-right: 30px;">
+                      CARRERAS
+                    </button>
+                    <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#">TIC´s</a></li>
+                      <li><a class="dropdown-item" href="#">Nanotecnología</a></li>
+                      <li><a class="dropdown-item" href="#">Mecatrónica</a></li>
+                      <li><a class="dropdown-item" href="#">Gestión empresarial</a></li>
+                      <li><a class="dropdown-item" href="#">Bioquímica</a></li>
+                      <li><a class="dropdown-item" href="#">Sistemas computacionales</a></li>
+                      <li><a class="dropdown-item" href="#">Industrial</a></li>
+                    </ul>
+                  </div>
             <button type="button" class="btn btn custom-button" style="margin-right: 30px;">
                 <a href="/carreras" class="nav-item nav-link">NOSOTROS</a>
             </button>

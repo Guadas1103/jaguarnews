@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { ApiRestService } from '../api-rest.service';
 import { Router } from '@angular/router';
 
+
  
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
   constructor(private api: ApiRestService, private router: Router) {}
   ngOnInit():void {
@@ -70,4 +72,5 @@ export class HomeComponent {
   editarPregunta(p:any){
     this.modP = JSON.parse(JSON.stringify(p));
   }*/
+  mostrarDropdown: boolean = true;
 }

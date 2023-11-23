@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,9 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { SistemaComponent } from './carreras/sistema/sistema.component';
 import { IndustrialComponent } from './carreras/industrial/industrial.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,8 @@ import { IndustrialComponent } from './carreras/industrial/industrial.component'
     HomeComponent,
     RegisterComponent,
     SistemaComponent,
-    IndustrialComponent
+    IndustrialComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,8 @@ import { IndustrialComponent } from './carreras/industrial/industrial.component'
     ReactiveFormsModule, 
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

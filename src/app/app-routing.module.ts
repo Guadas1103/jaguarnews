@@ -4,13 +4,15 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { SistemaComponent } from './carreras/sistema/sistema.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
   {path:'home', component: HomeComponent},
   {path:'signup', component: RegisterComponent},
-  {path:'sistema', component: SistemaComponent}
+  {path:'sistema', component: SistemaComponent},
+  { path: 'home-admin', component: HomeAdminComponent }
 ];
 
 @NgModule({
