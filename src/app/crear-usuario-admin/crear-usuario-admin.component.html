@@ -1,0 +1,93 @@
+<body class="bg-area-noticias">
+    
+
+  <div class="container-fluid bg-light p-0 sticky-top" >
+      <nav class="navbar navbar-expand-lg bg navbar-light shadow sticky-top p-0">
+          <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5" >
+              <img width="150px" src="../../assets/Logo_JaguarNews.png" alt="logito">
+              
+          </a>
+          <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+             
+              <span class="navbar-toggler-icon"></span>
+              
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse" style="padding: 10px;">
+              <div class="navbar-nav ms-auto p-4 p-lg-0">
+                  <button type="button" class="btn custom-button" style="margin-right: 30px;" (click)="navigateToHome()">
+                      <a >GENERAL</a>
+                  </button>
+  
+                  <div ngbDropdown class="btn-group">
+                      <button id="dropdownMenuButton" ngbDropdownToggle type="button" class="btn btn custom-button dropdown-toggle w-auto" aria-expanded="false" style="margin-right: 30px;">
+                        CARRERAS
+                      </button>
+                      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">TIC´s</a></li>
+                        <li><a class="dropdown-item" href="#">Nanotecnología</a></li>
+                        <li><a class="dropdown-item" href="#">Mecatrónica</a></li>
+                        <li><a class="dropdown-item" href="#">Gestión empresarial</a></li>
+                        <li><a class="dropdown-item" href="#">Bioquímica</a></li>
+                        <li><a class="dropdown-item" href="#">Sistemas computacionales</a></li>
+                        <li><a class="dropdown-item" href="#">Industrial</a></li>
+                      </ul>
+                    </div>
+              <button type="button" class="btn btn custom-button" style="margin-right: 30px;">
+                  <a href="/carreras" class="nav-item nav-link">Editar Noticia </a>
+              </button>
+              <button type="button" class="btn btn custom-button" style="margin-right: 30px; " (click)="navigateToUsuario()">
+                  <a >Crear Usuario</a>
+              </button> 
+              <button  type="button" class="btn btn custom-button"  style="margin-left: 10px;">
+                  <a href="index.html" class="nav-item nav-link" >
+                      <i class="bi bi-person-circle"></i>
+                      Cerrar Sesión
+                  </a>
+              </button>
+              </div>
+              
+          </div>
+      </nav>
+  </div>
+
+
+  <div class="container-xxl py-2">
+    <div class="container">
+                    <!-- ************  CONTENIDO  *************** -->
+                    <div class="container d-flex justify-content-center align-items-center ">
+                    <div class="card">
+                      <div class="card-body">
+    <div>
+    <h2>Crear Nuevo Usuario</h2>
+    <form (submit)="crearUsuario()">
+      <div class="row">
+        <div class="col-sm-5 py-1">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="nuevoUsuario.nombre" required>
+        </div>
+          <div class="col-sm-5 py-1">
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo" name="correo" [(ngModel)]="nuevoUsuario.correo" required>
+        </div>   
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 py-1">
+      <label for="rol">Rol:</label>
+      <select id="rol" name="rol" [(ngModel)]="nuevoUsuario.rol" required>
+        <option value="admin">Administrador</option>
+        <option value="usuario">Usuario</option>
+      </select>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-secondary rounded-3 w-auto h-50 mt-5 float-end" name="registrar"><i class="bi bi-person-fill-check"></i>&nbsp;&nbsp;Crear Usuario</button>
+    </form>
+  </div>
+
+    </div>
+  </div>
+  </div>
+    </div>
+  </div>
+</body>
