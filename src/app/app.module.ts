@@ -15,6 +15,7 @@ import { SistemaComponent } from './carreras/sistema/sistema.component';
 import { IndustrialComponent } from './carreras/industrial/industrial.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RegisterComponent,
     SistemaComponent,
     IndustrialComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    CrearUsuarioAdminComponent
   ],
   imports: [
     BrowserModule,

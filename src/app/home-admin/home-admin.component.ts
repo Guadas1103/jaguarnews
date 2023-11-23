@@ -16,4 +16,7 @@ export class HomeAdminComponent {
   navigateToHome() {
     this.router.navigate(['/home-admin']);
   }
+  navigateToUsuario() {
+    this.router.navigate(['/crear-usuario-admin']);
+  }
 }
