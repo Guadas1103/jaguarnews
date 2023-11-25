@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiRestService } from '../api-rest.service';
 
+
 @Component({
   selector: 'app-crear-usuario-admin',
   templateUrl: './crear-usuario-admin.component.html',

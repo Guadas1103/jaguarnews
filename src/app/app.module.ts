@@ -16,6 +16,7 @@ import { IndustrialComponent } from './carreras/industrial/industrial.component'
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
