@@ -1,0 +1,133 @@
+<body class="bg-area-noticias">
+    
+
+    <div class="container-fluid bg-light p-0 sticky-top" >
+        <nav class="navbar navbar-expand-lg bg navbar-light shadow sticky-top p-0">
+            <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5" >
+                <img width="150px" src="../../assets/Logo_JaguarNews.png" alt="logito">
+                
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+               
+                <span class="navbar-toggler-icon"></span>
+                
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse" style="padding: 10px;">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <button type="button" class="btn custom-button" style="margin-right: 30px;" (click)="navigateToHome()">
+                        <a >GENERAL</a>
+                    </button>
+    
+                    <div ngbDropdown class="btn-group">
+                        <button id="dropdownMenuButton" ngbDropdownToggle type="button" class="btn btn custom-button dropdown-toggle w-auto" aria-expanded="false" style="margin-right: 30px;">
+                          CARRERAS
+                        </button>
+                        <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                          <li><a class="dropdown-item" href="#">TIC´s</a></li>
+                          <li><a class="dropdown-item" href="#">Nanotecnología</a></li>
+                          <li><a class="dropdown-item" href="#">Mecatrónica</a></li>
+                          <li><a class="dropdown-item" href="#">Gestión empresarial</a></li>
+                          <li><a class="dropdown-item" href="#">Bioquímica</a></li>
+                          <li><a class="dropdown-item" href="#">Sistemas computacionales</a></li>
+                          <li><a class="dropdown-item" href="#">Industrial</a></li>
+                        </ul>
+                      </div>
+                <button type="button" class="btn btn custom-button" style="margin-right: 30px;" (click)="navigateToEditar()">
+                    <a>Editar Noticia </a>
+                </button>
+                <button type="button" class="btn btn custom-button" style="margin-right: 30px; " (click)="navigateToUsuario()">
+                    <a >Crear Usuario</a>
+                </button> 
+                <button  type="button" class="btn btn custom-button"  style="margin-left: 10px;">
+                    <a href="index.html" class="nav-item nav-link" >
+                        <i class="bi bi-person-circle"></i>
+                        Cerrar Sesión
+                    </a>
+                </button>
+                </div>
+                
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="card mt-3">
+                    <div class="card-header" >Insertar Noticia</div>
+                    <div class="card-body">
+                        
+                        <input type="text" class="form-control mt-1">
+                        
+                        <select class="form-select" [(ngModel)]="newP.categoria">
+                            
+                            <option value="Tic´s">TIC´s</option>
+                            <option value="Nanotecnologia">Nanotecnología</option>
+                            <option value="Mecatronica">Mecatrónica</option>
+                            <option value="Sistemas">Sistemas</option>
+                        </select>
+                        <input type="text" class="form-control mt-1" [(ngModel)]="newP.pregunta">
+                        
+                        <input type="file" accept=".jpg, .png, ">
+                        <button class="btn btn-primary float-end mt-3" (click)="crearPregunta()">
+                            <i class="bi bi-cloud-upload"></i>
+                        </button>
+                    </div>
+                </div>                   
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tema</th>
+                            <th>Usuario</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of preguntas">
+                            <td>{{p.no}}</td>
+                            <td>{{p.pregunta}}</td>
+                            <td>{{p.correo}}</td>
+                            <td class="text-end">
+                                
+                                <button class="btn btn-outline-secondary"><i class="bi bi-eye-fill"></i></button>
+                                &nbsp;
+                                <button class="btn btn-outline-success" (click)="editarPregunta(p)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="bi bi-pencil-fill"></i></button>
+                                &nbsp;
+                                <button class="btn btn-outline-danger"(click)="borrarPregunta(p.id)"><i class="bi bi-trash-fill"></i></button>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar pragunta</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <input type="text" class="form-control" [(ngModel)]="modP.pregunta">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="modificarPregunta()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>

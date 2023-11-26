@@ -19,4 +19,7 @@ export class HomeAdminComponent {
   navigateToUsuario() {
     this.router.navigate(['/crear-usuario-admin']);
   }
+  navigateToEditar() {
+    this.router.navigate(['/editar-noticia-admin']);
+  }
 }

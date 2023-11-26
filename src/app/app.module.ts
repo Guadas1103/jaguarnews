@@ -15,42 +15,32 @@ import { IndustrialComponent } from './carreras/industrial/industrial.component'
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { Auth, getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { AngularFontAwesomeComponent } from 'angular-font-awesome';
-import { AuthGuard } from './guards/auth.guards';
-import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from './environment';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
- declarations: [
-   AppComponent,
-   LoginComponent,
-   HomeComponent,
-   RegisterComponent,
-   SistemaComponent,
-   IndustrialComponent,
-   HomeAdminComponent,
-   CrearUsuarioAdminComponent
- ],
- imports: [
-     // error solution NullInjectError
-     AngularFireModule.initializeApp(environment.firebase),
-   BrowserModule,
-   AppRoutingModule,
-   HttpClientModule,
-   ReactiveFormsModule, 
-   FormsModule,
-   BrowserAnimationsModule,
-   ToastrModule.forRoot(),
-   NgbModule,
-   provideFirebaseApp(() => initializeApp(environment.firebase)),
-   provideAuth(() => getAuth()),
-   provideFirestore(() => getFirestore())
- ],
- 
- providers: [],
- bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent,
+    SistemaComponent,
+    IndustrialComponent,
+    HomeAdminComponent,
+    CrearUsuarioAdminComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule, 
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgbModule,
+    RouterModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

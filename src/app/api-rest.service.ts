@@ -18,8 +18,8 @@ constructor(private http: HttpClient) { }
   
       return this.http.post(this.urlRegister, {email:email,password:pass,returnSecureToken:true})
     }
-    getAllPreguntas(){
-      return this.http.get<any>(this.url + "preguntas?pageSize=100")
+    getAllNoticias(){
+      return this.http.get<any>(this.url + "noticias?pageSize=100")
     }
     cratePregunta(categoria:string, correo:string, pregunta:string, fecha:string){
       const newDoc ={"fields": {
