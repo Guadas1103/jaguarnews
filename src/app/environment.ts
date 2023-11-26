@@ -6,4 +6,6 @@ export const environment = {
         apiKey :"AIzaSyAFYwFgeW7sjCwiR9tauLjbv7CAoJ2ELLM",
         authDomain :"jaguarnews-b42e3.firebaseapp.com",
         messagingSenderId :"125883732306"},
+        position: "nam5 (us-central)"
+        
 };

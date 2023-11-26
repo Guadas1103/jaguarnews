@@ -5,7 +5,6 @@ import { ApiRestService } from '../api-rest.service';
 import { AuthService } from '../servicios/auth.service';
 
 
-/*import { AngularFirestore } from '@angular/fire/firestore';*/
 
 
 @Component({
