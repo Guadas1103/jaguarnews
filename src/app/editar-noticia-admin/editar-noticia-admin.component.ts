@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiRestService } from '../api-rest.service';
 
+
 @Component({
   selector: 'app-editar-noticia-admin',
   templateUrl: './editar-noticia-admin.component.html',
@@ -23,7 +24,7 @@ export class EditarNoticiaAdminComponent {
 
 
   consulta(){
-   this.api.getAllNoticias().subscribe({
+   this.api.getAllPreguntas().subscribe({
     next: datos =>{
       //console.log(datos)
       let i =1;

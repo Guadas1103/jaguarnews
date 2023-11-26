@@ -7,9 +7,6 @@ import { SistemaComponent } from './carreras/sistema/sistema.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 import { AuthGuard } from './guards/auth.guards';
-
-
-
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
