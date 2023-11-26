@@ -15,7 +15,13 @@ import { IndustrialComponent } from './carreras/industrial/industrial.component'
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
-import { RouterModule } from '@angular/router';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { Auth, getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFontAwesomeComponent } from 'angular-font-awesome';
+import { AuthGuard } from './guards/auth.guards';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from './environment';
 
 @NgModule({
  declarations: [
@@ -37,7 +43,10 @@ import { RouterModule } from '@angular/router';
    BrowserAnimationsModule,
    ToastrModule.forRoot(),
    NgbModule,
-   RouterModule
+   provideFirebaseApp(() => initializeApp(environment.firebase)),
+   provideAuth(() => getAuth()),
+
+
  ],
  providers: [],
  bootstrap: [AppComponent]

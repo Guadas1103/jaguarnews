@@ -56,31 +56,24 @@
                           <div class="invalid-feedback">Escribe tu nombre</div>
                       </div>
                       <div class="col-sm-4 py-1">
-                          <label for="txt_ap_mat" class="form-label">Apellidos</label>
-                          <input type="text" class="form-control" name="txt_ap_ambos" id="txt_ap_ambos" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tus apellidos" required>
+                          <label for="txt_ap_mat" class="form-label">Apellido Paterno</label>
+                          <input type="text" class="form-control" name="txt_ap_pa" id="txt_ap_ambos" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tus apellidos" required>
                           <div class="valid-feedback">Todo bien</div>
-                          <div class="invalid-feedback">Escribe tus apellidos</div>
+                          <div class="invalid-feedback">Escribe tu apellido paterno</div>
                       </div>
+                      <div class="col-sm-4 py-1">
+                        <label for="txt_ap_mat" class="form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" name="txt_ap_ma" id="txt_ap_ambos" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tus apellidos" required>
+                        <div class="valid-feedback">Todo bien</div>
+                        <div class="invalid-feedback">Escribe tu apellido materno</div>
+                    </div>
+
                   </div>
                   <div class="row">
-                      <div class="col-sm-4 py-1">
-                          <label for="slc_sexo" class="form-label">Carrera</label>
-                          <select class="form-select" name="slc_carrera" id="slc_carrera" required>
-                              <option selected disabled value="">Selecciona tu carrera...</option>
-                              <option value="TICS">TIC´s</option>
-                              <option value="Nanotecnologia">Nanotecnología</option>
-                              <option value="Mecatronica">Mecatrónica</option>
-                              <option value="Gestion empresarial">Gestión empresarial</option>
-                              <option value="Bioquimica">Bioquímica</option>
-                              <option value="Sistemas computacionales">Sistemas computacionales</option>
-                              <option value="Industrial">Industrial</option>
-                          </select>
-                          <div class="valid-feedback">Todo bien</div>
-                          <div class="invalid-feedback">Selecciona tu carrera</div>
-                      </div>
+    
                       <div class="col-sm-4 py-1">
                               <label for="txt_correo" class="form-label">Correo</label>
-                              <input type="email" class="form-control" name="txt_correo" id="txt_correo" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tu corrreo" required>
+                              <input type="email" class="form-control" name="txt_correo" id="email" #email  placeholder="Escribe tu corrreo" required>
                               <div class="valid-feedback">Todo bien</div>
                               <div class="invalid-feedback">Por favor, ingresa tu correo</div>
                       </div>
@@ -88,18 +81,13 @@
                   <div class="row">
                       <div class="col-sm-6 py-1">
                               <label for="txt_password" class="form-label">Contraseña</label>
-                              <input type="text" class="form-control" name="txt_password" id="txt_password" placeholder="Ingresa una contraseña" required>
+                              <input type="text" class="form-control" name="txt_password" id="password" #password placeholder="Ingresa una contraseña" required>
                               <div class="valid-feedback">Todo bien</div>
                               <div class="invalid-feedback">Por favor, ingresa tu contraseña</div>
                       </div>
-                      <div class="col-sm-6 py-1">
-                              <label for="txt_password2" class="form-label">Confirma tu contraseña</label>
-                              <input type="text" class="form-control" name="txt_password2" id="txt_password2" placeholder="Confirma tu contraseña" required>
-                              <div class="valid-feedback">Todo bien</div>
-                              <div class="invalid-feedback">Por favor, vuelve a escribir tu contraseña</div>
-                      </div>
+
                   </div>
-                      <button type="submit" class="btn btn-secondary rounded-3 w-auto h-50 mt-5 float-end" name="registrar"><i class="bi bi-person-fill-check"></i>&nbsp;&nbsp;Registrar</button>
+                      <button type="click" (click)="signUp(email.value, password.value)" class="btn btn-secondary rounded-3 w-auto h-50 mt-5 float-end" name="registrar"><i class="bi bi-person-fill-check"></i>&nbsp;&nbsp;Registrar</button>
                   </form>
                     </div>
                   </div>

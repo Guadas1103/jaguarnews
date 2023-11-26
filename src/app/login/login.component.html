@@ -8,46 +8,46 @@
         </div>
     </nav>
 </div>
+<div class="bubbles">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+</div>
 <div class="container">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col text-center" >
-            <div class="card mt-3">
-                <div class="card-header">
-                    Inicio de Sesion
-                </div>
-
-                <div class="card-body">
-
-                        <i class="bi bi-person-circle icono-login"></i>
-                    
-                    <div class="input-group">
-                        <div class="input-group-text">
-                            <i class="bi bi-envelope"></i>
+    <div class="d-flex justify-content-center align-items-center flex-wrap">
+ 
+        <div class="form-card">
+            <div class="card">
+                <div class="card-head bg-white">
+                    <p class="m-0 text-center fs-08">Inicio de Sesión </p>
+                    <div class="d-flex align-items-center justify-content-center my-2">
+                        <div type="click" (click)="logInWithGoogle()" class="btn btn-default mx-3">
+                            <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                                alt="">
+                            <span>Google</span>
                         </div>
-                        <input type="email" class="form-control" placeholder="correo" [(ngModel)]="email">
-                    </div>
-                    <div class="input-group mt-3">
-                        <div class="input-group-text">
-                            <i class="bi bi-key"></i>
-                        </div>
-                        <input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="pass">
                     </div>
                 </div>
-                <div class="alert alert-danger" role="alert" *ngIf="showError">
-                   Error de usuario y/o contraseña
-                  </div>
-                <div class="card-footer">
-                    <button class="btn btn-guinda float-end" value="Entrar" (click)="login()">
-                        <div class="spinner-border spinner-border-sm" role="status" *ngIf="showLoading">
-                          </div>
-                    Entrar
-                    </button>
+                <div class="card-form">
+                    <p class="text-center text-muted fs-08 mt-3">O ingresa tus datos</p>
+                    <div class="d-flex align-items-center input-field">
+                        <span class="far fa-envelope text-muted"></span>
+                        <input type="email"  name="email" placeholder="Correo" id="email" #email class="form-control" required>
+                    </div>
+                    <div class="d-flex align-items-center input-field">
+                        <span class="fas fa-key text-muted"></span>
+                        <input type="password" name="pass" placeholder="Password" id="password" #password class="form-control" required>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <input type="checkbox" name="remember" id="remember">
+                        <label class="text-muted ms-2" for="remember">Remember me</label>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div type="click" (click)="logIn(email.value, password.value)" class="btn btn-primary mt-3">Sign In</div>
+                    </div>
                 </div>
-                
             </div>
-            <a href="/signup" class="link-success">Registrarse</a>
         </div>
-        <div class="col"></div>
     </div>
 </div>
