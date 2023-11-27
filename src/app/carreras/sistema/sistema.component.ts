@@ -37,11 +37,29 @@ export class SistemaComponent implements OnInit{
           imagenUrl: p.fields.hasOwnProperty('imagenUrl')? p.fields.imagenUrl.stringValue:"",
         }))
         console.log(this.noticias)
+        // Ahora que tienes las noticias, puedes cargar las imágenes desde el Storage.
+        this.loadImagesFromStorage();
       },
       error: e => {
         console.error("Error al obtener Noticias:", e);
       }
-    })
+    });
+  }
+  loadImagesFromStorage() {
+    // Itera sobre las noticias y carga las imágenes desde el Storage.
+    this.noticias.forEach(noticia => {
+      if (noticia.imagenUrl) {
+        this.api.getImageFromStorage(noticia.imagenUrl).subscribe(
+          image => {
+            // `image` contiene la imagen recuperada. Puedes usarla según sea necesario.
+            console.log("Imagen cargada:", image);
+          },
+          error => {
+            console.error("Error al cargar la imagen:", error);
+          }
+        );
+      }
+    });
   }
 
   navigateToHome() {

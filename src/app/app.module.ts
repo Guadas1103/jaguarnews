@@ -24,6 +24,8 @@ import { AuthGuard } from './guards/auth.guards';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environment';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { FormsModule } from '@angular/forms';
    IndustrialComponent,
    HomeAdminComponent,
    CrearUsuarioAdminComponent,
-   EditarNoticiaAdminComponent
+   EditarNoticiaAdminComponent,
+   NavbarComponent,
+   FooterComponent
    
  ],
  imports: [
