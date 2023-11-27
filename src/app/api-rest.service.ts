@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, catchError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +55,8 @@ constructor(private http: HttpClient) { }
       return this.http.delete(this.url + "preguntas/"+id)
     }
 
-
+    getAllNoticias(){
+      return this.http.get<any>(this.url + 'noticias');
+    }
   
 }
