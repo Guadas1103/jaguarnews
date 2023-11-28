@@ -59,10 +59,5 @@ constructor(private http: HttpClient) { }
       return this.http.get<any>(this.url + 'noticias');
     }
 
-    getImageFromStorage(imageUrl: string): Observable<any> {
-      const fullUrl = `URL_BASE_DEL_STORAGE/${imageUrl}`; // Asegúrate de reemplazar URL_BASE_DEL_STORAGE con la URL base de tu almacenamiento.
-    
-      return this.http.get(fullUrl, { responseType: 'blob' });
-    }
   
 }

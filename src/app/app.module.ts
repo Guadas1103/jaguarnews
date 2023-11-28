@@ -26,6 +26,7 @@ import { environment } from './environment';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { NoticiasComponent } from './component/noticias/noticias.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { FooterComponent } from './component/footer/footer.component';
    CrearUsuarioAdminComponent,
    EditarNoticiaAdminComponent,
    NavbarComponent,
-   FooterComponent
+   FooterComponent,
+   NoticiasComponent
    
  ],
  imports: [

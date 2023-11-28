@@ -5,7 +5,9 @@ export const environment = {
         storageBucket :"jaguarnews-b42e3.appspot.com",
         apiKey :"AIzaSyAFYwFgeW7sjCwiR9tauLjbv7CAoJ2ELLM",
         authDomain :"jaguarnews-b42e3.firebaseapp.com",
-        messagingSenderId :"125883732306"},
-        position: "nam5 (us-central)"
+        messagingSenderId :"125883732306",
+        locationId: "nam5 (us-central)",
+    },
+        
         
 };
