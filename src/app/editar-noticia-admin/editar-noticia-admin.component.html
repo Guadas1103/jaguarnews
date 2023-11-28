@@ -58,19 +58,20 @@
                     <div class="card-header" >Insertar Noticia</div>
                     <div class="card-body">
                         
-                        <input type="text" class="form-control mt-1">
+                        <input type="text" class="form-control mt-3" placeholder="Inserta el titulo" [(ngModel)]="newP.titulo">
                         
-                        <select class="form-select" [(ngModel)]="newP.categoria">
+                        <select class="form-select form-control mt-3" aria-placeholder="selecciona la carrera" [(ngModel)]="newP.categoria" required>
                             
-                            <option value="Tic´s">TIC´s</option>
-                            <option value="Nanotecnologia">Nanotecnología</option>
-                            <option value="Mecatronica">Mecatrónica</option>
-                            <option value="Sistemas">Sistemas</option>
+                            <option value="general">General</option>
+                            <option value="tic´s">Tic´s</option>
+                            <option value="nanotecnologia">Nanotecnología</option>
+                            <option value="mecatronica">Mecatrónica</option>
+                            <option value="sistemas">Sistemas</option>
                         </select>
-                        <input type="text" class="form-control mt-1" [(ngModel)]="newP.pregunta">
+                        <textarea class="form-control mt-1" rows="5" [(ngModel)]="newP.descripcion" placeholder="Inserta la descripción"></textarea>
                         
-                        <input type="file" accept=".jpg, .png, ">
-                        <button class="btn btn-primary float-end mt-3" (click)="crearPregunta()">
+                        <input type="file" class="form-control mt-3" accept=".jpg, .png, .jpeg" (change)="onImageSelected($event)" placeholder="Selecciona la imagen">
+                        <button class="btn btn-primary float-end mt-3" (click)="crearNoticia()">
                             <i class="bi bi-cloud-upload"></i>
                         </button>
                     </div>
@@ -84,24 +85,58 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tema</th>
-                            <th>Usuario</th>
+                            <th>Autor</th>
+                            <th>Descripcion</th>
+                            <th>Fecha</th>
+                            <th>Titulo</th>
+                            <th>ID</th>
+
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let p of preguntas">
+                        <tr *ngFor="let p of noticias">
                             <td>{{p.no}}</td>
-                            <td>{{p.pregunta}}</td>
-                            <td>{{p.correo}}</td>
+                            <td>{{p.autor}}</td>
+                            <td>{{p.descripcion}}</td>
+                            <td>{{p.fecha}}</td>
+                            <td>{{p.titulo}}</td>
+                            <td>{{p.id}}</td>
                             <td class="text-end">
+
+              <!-- Modal de Leer mas... -->
+<div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">{{verN.titulo}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 ms-auto justify-content-md-start mt-auto">
+          <p>Autor: {{verN.autor}}</p>
+        </div>
+        <img [src]="verN.imagenURL" class="img-fluid" alt="Imagen en grande">
+        <div class="col-md-12 ms-auto justify-content-md-start mt-auto pt-2">
+          <p>{{verN.descripcion}}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN: Modal de Leer mas.. -->
                                 
-                                <button class="btn btn-outline-secondary"><i class="bi bi-eye-fill"></i></button>
+                                <button class="btn btn-outline-secondary" (click)="verNoticia(p.id)" data-bs-toggle="modal" data-bs-target="#leerMas">
+                                   <i class="bi bi-eye-fill"></i>
+                                </button>
                                 &nbsp;
-                                <button class="btn btn-outline-success" (click)="editarPregunta(p)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button class="btn btn-outline-success" (click)="editarNoticia(p)" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="bi bi-pencil-fill"></i></button>
                                 &nbsp;
-                                <button class="btn btn-outline-danger"(click)="borrarPregunta(p.id)"><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-outline-danger"(click)="borrarNoticia(p.id)"><i class="bi bi-trash-fill"></i></button>
                                 
                             </td>
                         </tr>
@@ -112,22 +147,59 @@
     </div>
     
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Modal de Modificación de Noticia -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Noticia</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario de Modificación -->
+          <form (submit)="modificarNoticia()">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Título</label>
+              <input type="text" class="form-control" id="titulo" [(ngModel)]="modP.titulo" name="titulo" required>
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea class="form-control" id="descripcion" [(ngModel)]="modP.descripcion" name="descripcion" required></textarea>
+            </div>
+            <!-- Otros campos que puedas tener en tu objeto modP -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" (click)="modificarNoticia()">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Modal de Leer mas... 
+      <div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar pragunta</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Noticia title</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <input type="text" class="form-control" [(ngModel)]="modP.pregunta">
+                <div class="col-md-12 ms-auto justify-content-md-start mt-auto">
+                    <p>Autor</p>
+                </div>
+                <img src="../../../assets/noticias_prueba.jpg" class="img-fluid" alt="Imagen en grande">
+                <div class="col-md-12 ms-auto justify-content-md-start mt-auto pt-2">
+                    <p>Buenos días #FuturosIngenierosEnSistemas 😎 Un día como hoy pero de 1815 hace George Boole, considerado como uno de los fundadores del campo de las Ciencias de la Computación.</p>
+                </div>               
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="modificarPregunta()">Guardar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
+     FIN: Modal de Leer mas.. -->
 
 </body>
