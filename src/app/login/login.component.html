@@ -16,38 +16,49 @@
 </div>
 <div class="container">
     <div class="d-flex justify-content-center align-items-center flex-wrap">
- 
+   
         <div class="form-card">
             <div class="card">
                 <div class="card-head bg-white">
-                    <p class="m-0 text-center fs-08">Inicio de Sesión </p>
-                    <div class="d-flex align-items-center justify-content-center my-2">
-                        <div type="click" (click)="logInWithGoogle()" class="btn btn-default mx-3">
-                            <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                                alt="">
-                            <span>Google</span>
-                        </div>
-                    </div>
+                  <p class="m-0 text-center fs-08">Inicio de Sesión </p>
+                  <div class="d-flex align-items-center justify-content-center my-2">
+                      <div type="click" (click)="loginWithGoogle()" class="btn btn-default mx-3">
+                          <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                              alt="">
+                          <span>Google</span>
+                      </div>
+                  </div>
                 </div>
                 <div class="card-form">
-                    <p class="text-center text-muted fs-08 mt-3">O ingresa tus datos</p>
-                    <div class="d-flex align-items-center input-field">
-                        <span class="far fa-envelope text-muted"></span>
-                        <input type="email"  name="email" placeholder="Correo" id="email" #email class="form-control" required>
-                    </div>
-                    <div class="d-flex align-items-center input-field">
-                        <span class="fas fa-key text-muted"></span>
-                        <input type="password" name="pass" placeholder="Password" id="password" #password class="form-control" required>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <input type="checkbox" name="remember" id="remember">
-                        <label class="text-muted ms-2" for="remember">Remember me</label>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div type="click" (click)="logIn(email.value, password.value)" class="btn btn-primary mt-3">Sign In</div>
-                    </div>
+                  <p class="text-center text-muted fs-08 mt-3">O ingresa tus datos</p>
+                  <div class="d-flex align-items-center input-field">
+                      <span class="far fa-envelope text-muted"></span>
+                      <input type="email" name="email" placeholder="Correo" id="email" #email class="form-control" required>
+                  </div>
+                  <div class="d-flex align-items-center input-field">
+                      <span class="fas fa-key text-muted"></span>
+                      <input type="password" name="pass" placeholder="Password" id="password" #password class="form-control" required>
+                  </div>
+
+                  <div class="d-flex align-items-center input-field">
+                    <label for="role">Rol:</label>
+                    <select id="role" name="role" class="form-control">
+                        <option value="admin">Administrador</option>
+                        <option value="student">Estudiante</option>
+                    </select>
+                 </div>
+
+
+
+                  <div class="d-flex justify-content-center">
+                      <div type="click" (click)="login(email.value, password.value)" class="btn btn-primary mt-3">Sign In</div>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <p>¿No cuentas con un perfil?</p><a routerLink="/register"><u>Registrate</u></a>
+                  </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+  </div>
+  

@@ -1,74 +1,90 @@
-import { Injectable, NgZone } from "@angular/core";
-import { Router } from "@angular/router";
-import { GoogleAuthProvider } from "firebase/auth";
-import { AngularFireAuth} from '@angular/fire/compat/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../environment";
+import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
 
-
-
-
-@Injectable({
-    providedIn: 'root'
-})
-
+@Injectable()
 export class AuthService {
-    userData: any;
+   private router: Router;
+   private loggedIn = false;
+  
+   constructor(router: Router) {
+     this.router = router;
+     onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
+  }
 
-    constructor(
-        private afAuth: AngularFireAuth,
-        private firebaseAuthenticationService: AngularFireAuth,
-        private router: Router,
-        private ngZone : NgZone
-    ){
-        this.firebaseAuthenticationService.authState.subscribe((user) => {
-            if (user){
-                this.userData = user;
-                localStorage.setItem('user', JSON.stringify(this.userData));
-
-            } else {
-                localStorage.setItem('user', 'null');
-            }
-        })
+  isLoggedIn() {
+    return this.loggedIn;
+  }
+  
+  async registrar(formValue: any) {
+    if (this.registroForm.valid) {
+      const userCredential = await signInWithEmailAndPassword(auth, formValue.email, formValue.password);
+      const user = userCredential.user;
+      if(user && user.email){
+        let name, lastName, mlastName;
+        if(user.displayName) {
+          const displayNameParts = user.displayName.split(' ');
+          name = displayNameParts[0];
+          lastName = displayNameParts[1];
+          mlastName = displayNameParts[2];
+        }
+        await setDoc(doc(db, 'users', user.email), {
+          email: user.email,
+          numControl: user.email.substring(0, 8),
+          lastName: lastName,
+          mlastName: mlastName,
+          name: name,
+          // Aquí puedes agregar más campos si lo deseas
+        });
+      } else{
+        console.error('Error: el usuario no tiene un correo electrónico');
+      }
     }
+  }
 
-    //Login con email y password
-    logWhitEmailAndPassword(email: string, password: string){
-        return this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
-       .then((userCredential) => {
-        this.userData = userCredential.user
-        this.observeUserState()
-       }) 
-       .catch((error: Error) => {
-        alert(error.message);
-       })
-    }
+   async loginWithGoogle() {
+     try {
+       const provider = new GoogleAuthProvider();
+       const userCredential = await signInWithPopup(auth, provider);
+       const user = userCredential.user;
+       if(user && user.email){
+         let name, lastName, mlastName;
+         if(user.displayName) {
+           const displayNameParts = user.displayName.split(' ');
+           name = displayNameParts[0];
+           lastName = displayNameParts[1];
+           mlastName = displayNameParts[2]
+         }
+         await setDoc(doc(db, 'users', user.email), {
+           email: user.email,
+           numControl: user.email.substring(0, 9),
+           lastName: lastName,
+           name: name,
+         });
+       } else{
+         console.error('Error: el usuario no tiene un correo electrónico');
+       }
+     } catch (error) {
+       console.error('Error en el inicio de sesión:', error);
+     }
+   }
 
-    //Login con Google
-    logWhitGoogleProvider (){
-        return this.firebaseAuthenticationService.signInWithPopup(new GoogleAuthProvider())
-        .then(() => this.observeUserState())
-        .catch((error: Error) => {
-        alert(error.message);
-        })
-    }
-
-    observeUserState (){
-        this.firebaseAuthenticationService.authState.subscribe((userState) => {
-            userState && this.ngZone.run(() => this.router.navigate(['home']))
-        })
-    }
-
-    //regresar cuando el usuario esta logged in
-    get isLoggedIn(): boolean {
-        const user = JSON.parse(localStorage.getItem('user')!);
-        return user !== null;
-    }
-
-    // logOut
-    logOut(){
-        return this.firebaseAuthenticationService.signOut().then(() => {
-            localStorage.removeItem('user');
-            this.router.navigate(['login']);
-        })
-    }
-
+   async logout() {
+     try {
+       await signOut(auth);
+       // Redirige al usuario a la ruta 'login'
+       this.router.navigate(['login']);
+     } catch (error) {
+       console.error('Error al cerrar la sesión:', error);
+     }
+   }
 }
+

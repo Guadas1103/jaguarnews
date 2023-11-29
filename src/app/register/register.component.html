@@ -1,4 +1,4 @@
-<body>
+
 <!-- topnab -->
 <div class="container-fluid bg-light p-0 sticky-top" >
     <nav class="navbar navbar-expand-lg bg navbar-light shadow sticky-top p-0">
@@ -41,60 +41,62 @@
                         <div class="container text-center">
                             <h1>COMPLETA TU REGISTRO</h1>
                           </div>
-                  <form id="form_registro" name="form_registro" class="row mt-4 g-3 needs-validation" action="" method="post" onsubmit="return validarRegistro(this);" novalidate>
-                  <div class="row">    
-                      <div class="col-sm-4 py-1">
-                          <label for="txt_nombre" class="form-label" place>Numero de Control</label>
-                          <input type="text" class="form-control" name="txt_numcontrol" id="txt_ncontrol" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ingresa tu número de control" required>
-                          <div class="valid-feedback">Todo bien</div>
-                          <div class="invalid-feedback">Es necesario colocar tu número de control</div>
-                      </div>
-                      <div class="col-sm-4 py-1">
-                          <label for="txt_ap_pat" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" name="txt_nombre" id="txt_nombre" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tu nombre" required>
-                          <div class="valid-feedback">Todo bien</div>
-                          <div class="invalid-feedback">Escribe tu nombre</div>
-                      </div>
-                      <div class="col-sm-4 py-1">
-                          <label for="txt_ap_mat" class="form-label">Apellido Paterno</label>
-                          <input type="text" class="form-control" name="txt_ap_pa" id="txt_ap_ambos" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tus apellidos" required>
-                          <div class="valid-feedback">Todo bien</div>
-                          <div class="invalid-feedback">Escribe tu apellido paterno</div>
-                      </div>
-                      <div class="col-sm-4 py-1">
-                        <label for="txt_ap_mat" class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" name="txt_ap_ma" id="txt_ap_ambos" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tus apellidos" required>
-                        <div class="valid-feedback">Todo bien</div>
-                        <div class="invalid-feedback">Escribe tu apellido materno</div>
-                    </div>
-
+                          <form [formGroup]="registroForm" (ngSubmit)="registrar()" id="form_registro" name="form_registro" class="row mt-4 g-3 needs-validation" action="" method="post" onsubmit="return validarRegistro(this);" novalidate>
+                            <div class="row">   
+                                <div class="col-sm-4 py-1">
+                                    <label for="txt_numcontrol" class="form-label" place>Numero de Control</label>
+                                    <input type="text" class="form-control" name="txt_numcontrol" id="txt_ncontrol" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ingresa tu número de control" formControlName="id" required>
+                                    <div class="valid-feedback">Todo bien</div>
+                                    <div class="invalid-feedback">Es necesario colocar tu número de control</div>
+                                </div>
+                                <div class="col-sm-4 py-1">
+                                    <label for="txt_nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" name="txt_nombre" id="txt_nombre" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tu nombre" formControlName="name" required>
+                                    <div class="valid-feedback">Todo bien</div>
+                                    <div class="invalid-feedback">Escribe tu nombre</div>
+                                </div>
+                                <div class="col-sm-4 py-1">
+                                    <label for="txt_ap_pat" class="form-label">Apellido Paterno</label>
+                                    <input type="text" class="form-control" name="txt_ap_pa" id="txt_ap_pa" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tus apellidos" formControlName="lastName" required>
+                                    <div class="valid-feedback">Todo bien</div>
+                                    <div class="invalid-feedback">Escribe tu apellido paterno</div>
+                                </div>
+                                <div class="col-sm-4 py-1">
+                                  <label for="txt_ap_mat" class="form-label">Apellido Materno</label>
+                                  <input type="text" class="form-control" name="txt_ap_ma" id="txt_ap_ma" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Escribe tus apellidos" formControlName="mlastName" required>
+                                  <div class="valid-feedback">Todo bien</div>
+                                  <div class="invalid-feedback">Escribe tu apellido materno</div>
+                              </div>
+            
+                            </div>
+                            <div class="row">
+               
+                                <div class="col-sm-4 py-1">
+                                        <label for="txt_correo" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" name="txt_correo" id="email" #email placeholder="Escribe tu corrreo" formControlName="email" required>
+                                        <div class="valid-feedback">Todo bien</div>
+                                        <div class="invalid-feedback">Por favor, ingresa tu correo</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 py-1">
+                                        <label for="txt_password" class="form-label">Contraseña</label>
+                                        <input type="text" class="form-control" name="txt_password" id="password" #password placeholder="Ingresa una contraseña" formControlName="password" required>
+                                        <div class="valid-feedback">Todo bien</div>
+                          <div class="invalid-feedback">Por favor, ingresa una contraseña</div>
                   </div>
-                  <div class="row">
-    
-                      <div class="col-sm-4 py-1">
-                              <label for="txt_correo" class="form-label">Correo</label>
-                              <input type="email" class="form-control" name="txt_correo" id="email" #email  placeholder="Escribe tu corrreo" required>
-                              <div class="valid-feedback">Todo bien</div>
-                              <div class="invalid-feedback">Por favor, ingresa tu correo</div>
-                      </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12 py-1">
+                      <button type="submit" class="btn btn-primary">Registrar</button>
                   </div>
-                  <div class="row">
-                      <div class="col-sm-6 py-1">
-                              <label for="txt_password" class="form-label">Contraseña</label>
-                              <input type="text" class="form-control" name="txt_password" id="password" #password placeholder="Ingresa una contraseña" required>
-                              <div class="valid-feedback">Todo bien</div>
-                              <div class="invalid-feedback">Por favor, ingresa tu contraseña</div>
-                      </div>
-
-                  </div>
-                      <button type="click" (click)="signUp(email.value, password.value)" class="btn btn-secondary rounded-3 w-auto h-50 mt-5 float-end" name="registrar"><i class="bi bi-person-fill-check"></i>&nbsp;&nbsp;Registrar</button>
-                  </form>
-                    </div>
-                  </div>
-  </div>
-</div>
+               </div>
+           </form>
+       </div>
+   </div>
 </div>
 <!-- Registro End -->
+                                       
 
 <!-- Footer Start -->
 <div class="container-fluid  text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -122,4 +124,4 @@
     </div>
 </div>
 <!-- Footer End -->
-</body>
+

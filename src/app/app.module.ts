@@ -18,10 +18,11 @@ import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { Auth, getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { AngularFontAwesomeComponent } from 'angular-font-awesome';
-import { AuthGuard } from './guards/auth.guards';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environment';
+import { AuthService } from './servicios/auth.service';
+
+
 
 @NgModule({
  declarations: [
@@ -35,8 +36,7 @@ import { environment } from './environment';
    CrearUsuarioAdminComponent
  ],
  imports: [
-     // error solution NullInjectError
-     AngularFireModule.initializeApp(environment.firebase),
+    
    BrowserModule,
    AppRoutingModule,
    HttpClientModule,
@@ -47,10 +47,13 @@ import { environment } from './environment';
    NgbModule,
    provideFirebaseApp(() => initializeApp(environment.firebase)),
    provideAuth(() => getAuth()),
-   provideFirestore(() => getFirestore())
+   provideFirestore(() => getFirestore()),
+
+    // error solution NullInjectError
+    AngularFireModule.initializeApp(environment.firebase)
  ],
  
- providers: [],
+ providers: [ AuthService ],
  bootstrap: [AppComponent]
 })
 export class AppModule { }
