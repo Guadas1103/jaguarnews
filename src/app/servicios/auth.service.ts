@@ -12,6 +12,19 @@ import { AngularFireAuth} from '@angular/fire/compat/auth';
 
 export class AuthService {
     userData: any;
+    private authTokenKey = 'authToken';
+
+    setAuthToken(token: string): void {
+      localStorage.setItem(this.authTokenKey, token);
+    }
+  
+    getAuthToken(): string | null {
+      return localStorage.getItem(this.authTokenKey);
+    }
+  
+    clearAuthToken(): void {
+      localStorage.removeItem(this.authTokenKey);
+    }
 
     constructor(
         private afAuth: AngularFireAuth,
@@ -53,7 +66,7 @@ export class AuthService {
 
     observeUserState (){
         this.firebaseAuthenticationService.authState.subscribe((userState) => {
-            userState && this.ngZone.run(() => this.router.navigate(['home']))
+            userState && this.ngZone.run(() => this.router.navigate(['home-admin']))
         })
     }
 
