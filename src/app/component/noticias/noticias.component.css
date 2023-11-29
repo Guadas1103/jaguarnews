@@ -5,9 +5,7 @@
 .bg-noticia {
     background-color: #ffffff !important;
 }
-.bg-area-noticias {
-    background-color: #F2F2F2 !important;
-}
+
 .custom-button {
     background-color: #D9821B; /* Color de fondo del botón */
     color: #fff; /* Color del texto del botón */
@@ -17,7 +15,7 @@
     /* Otros estilos de botón personalizados */
   }
 
-
+/* Contenido *******************************************************************/
 p{
     font-family: 'Montserrat', sans-serif;
 }
@@ -36,31 +34,8 @@ h2, h1{
 .texto-two h1 {
     font-size: 5vw;
 }
-.texto-borde {
-    color: white;
-    text-shadow:
-      -1px -1px 0 #000,
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-      1px 1px 0 #000;
-  }
 
-
-/*velo*************************************************************************************/
-.container-with-background {
-    background-image: url('../../../assets/fondo_sistema.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    background-color: rgba(19, 15, 64, 0.2);
-    z-index: -1;
-  }
-  
-
-  .card{
-    transition: all 400ms ease-out;
-  }
-  
+ 
   /*Tarjetas*************************************************************/
   .card:hover{
 	box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
@@ -73,14 +48,5 @@ h2, h1{
     position: relative;
     display: block;
 }
-.container-two{
-    width: 100%;
-    position: relative;
-    background-color: #F2F2F2;
-}
 
-.container-xxl{
-    width: 100%;
-    background-color: #F2F2F2;
-    
-}
+

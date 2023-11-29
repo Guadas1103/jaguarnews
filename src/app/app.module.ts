@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -14,14 +14,22 @@ import { SistemaComponent } from './carreras/sistema/sistema.component';
 import { IndustrialComponent } from './carreras/industrial/industrial.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { Auth, getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environment';
+<<<<<<< HEAD
 import { AuthService } from './servicios/auth.service';
 
+=======
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { NoticiasComponent } from './component/noticias/noticias.component';
+>>>>>>> e9745650da9e0cef8ea2bc30fbaf8952b3740e8f
 
 
 @NgModule({
@@ -33,7 +41,12 @@ import { AuthService } from './servicios/auth.service';
    SistemaComponent,
    IndustrialComponent,
    HomeAdminComponent,
-   CrearUsuarioAdminComponent
+   CrearUsuarioAdminComponent,
+   EditarNoticiaAdminComponent,
+   NavbarComponent,
+   FooterComponent,
+   NoticiasComponent
+   
  ],
  imports: [
     

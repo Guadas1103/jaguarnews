@@ -1,0 +1,48 @@
+<div class="container-fluid bg-light p-0 sticky-top" >
+    <nav class="navbar navbar-expand-lg bg navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5" >
+            <img width="150px" src="../../assets/Logo_JaguarNews.png" alt="logito">
+            
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+           
+            <span class="navbar-toggler-icon"></span>
+            
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse" style="padding: 10px;">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <button type="button" class="btn custom-button" style="margin-right: 30px;">
+                    <a >GENERAL</a>
+                </button>
+
+                <div ngbDropdown class="btn-group">
+                    <button id="dropdownMenuButton" ngbDropdownToggle type="button" class="btn btn custom-button dropdown-toggle w-auto" aria-expanded="false" style="margin-right: 30px;">
+                      CARRERAS
+                    </button>
+                    <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#">TIC´s</a></li>
+                      <li><a class="dropdown-item" href="#">Nanotecnología</a></li>
+                      <li><a class="dropdown-item" href="#">Mecatrónica</a></li>
+                      <li><a class="dropdown-item" href="#">Gestión empresarial</a></li>
+                      <li><a class="dropdown-item" href="#">Bioquímica</a></li>
+                      <li><a class="dropdown-item" href="#">Sistemas computacionales</a></li>
+                      <li><a class="dropdown-item" href="#">Industrial</a></li>
+                    </ul>
+                  </div>
+            <button type="button" class="btn btn custom-button" style="margin-right: 30px;">
+                <a href="/carreras" class="nav-item nav-link">NOSOTROS</a>
+            </button>
+            <button type="button"  class="btn btn custom-button" style="margin-right: 30px; ">
+                <a href="contact.html" class="nav-item nav-link">CONTACTO</a>
+            </button> 
+            <button  type="button" (click)="logOut" class="btn btn custom-button"  style="margin-left: 10px;">
+                <a href="index.html" class="nav-item nav-link" >
+                    <i class="bi bi-person-circle"></i>
+                    Cerrar Sesión
+                </a>
+            </button>
+            </div>
+            
+        </div>
+    </nav>
+</div>

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, catchError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,38 +23,53 @@ constructor(private http: HttpClient) { }
     getAllNoticias(){
       return this.http.get<any>(this.url + "noticias?pageSize=100")
     }
-    cratePregunta(categoria:string, correo:string, pregunta:string, fecha:string){
+    crateNoticia(autor:string, descripcion:string, fecha:string, titulo:string, categoria:string ){
       const newDoc ={"fields": {
-        "categoria": {
-          "stringValue": categoria
+        "autor": {
+          "stringValue": autor
         },
-        "pregunta": {
-          "stringValue": pregunta
+        "descripcion": {
+          "stringValue": descripcion
         },
         "fecha": {
           "timestampValue": fecha
         },
-        "correo": {
-          "stringValue": correo
+        "titulo": {
+          "stringValue": titulo
         }
       }
     }
-      return this.http.post(this.url + "preguntas", newDoc)
+      return this.http.post(this.url + "noticias", newDoc)
     }
-    updatePregunta( pregunta:string, id:string){
+    updateNoticia( autor:string, descripcion:string, titulo:string, fecha:string, id:string, categoria:string){
       const newDoc ={"fields": {
        
-        "pregunta": {
-          "stringValue": pregunta
+        "autor": {
+          "stringValue": autor
+        },
+        "descripcion": {
+          "stringValue": descripcion
+        },
+        "titulo": {
+          "stringValue": titulo
+        },
+        "fecha": {
+          "timestampValue": fecha
         }
+        
+        
+        
       }
     }
-      return this.http.patch(this.url + "preguntas/"+id+"?updateMask.fieldPaths=pregunta", newDoc )
+      return this.http.patch(this.url + "noticias/"+id+"?updateMask.fieldPaths=pregunta", newDoc )
     }
-    deletePregunta(id:string){
-      return this.http.delete(this.url + "preguntas/"+id)
+    deleteNoticia(id:string){
+      return this.http.delete(this.url + "noticias/"+id)
     }
 
+    getAllNoticias(){
+      return this.http.get<any>(this.url + 'noticias');
+    }
 
   
 }
