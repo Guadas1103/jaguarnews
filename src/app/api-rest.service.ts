@@ -20,9 +20,7 @@ constructor(private http: HttpClient) { }
   
       return this.http.post(this.urlRegister, {email:email,password:pass,returnSecureToken:true})
     }
-    getAllNoticias(){
-      return this.http.get<any>(this.url + "noticias?pageSize=100")
-    }
+    
     crateNoticia(autor:string, descripcion:string, fecha:string, titulo:string, categoria:string ){
       const newDoc ={"fields": {
         "autor": {

@@ -3,9 +3,11 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../environment";
 import { Router } from '@angular/router';
 import { Injectable } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 
 @Injectable()
 export class AuthService {
+  registroForm!: FormGroup ;
    private router: Router;
    private loggedIn = false;
   
@@ -87,4 +89,5 @@ export class AuthService {
      }
    }
 }
+
 

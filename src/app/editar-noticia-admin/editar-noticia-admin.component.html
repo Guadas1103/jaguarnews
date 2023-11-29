@@ -87,10 +87,10 @@
                             <th>No</th>
                             <th>Autor</th>
                             <th>Descripcion</th>
-                            <th>Fecha</th>
+                            
                             <th>Titulo</th>
                             <th>ID</th>
-
+                            <th>categoria</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -99,36 +99,34 @@
                             <td>{{p.no}}</td>
                             <td>{{p.autor}}</td>
                             <td>{{p.descripcion}}</td>
-                            <td>{{p.fecha}}</td>
+                            
                             <td>{{p.titulo}}</td>
                             <td>{{p.id}}</td>
+                            <td>{{p.categoria}}</td>
                             <td class="text-end">
 
-              <!-- Modal de Leer mas... -->
-<div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5">{{verN.titulo}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 ms-auto justify-content-md-start mt-auto">
-          <p>Autor: {{verN.autor}}</p>
-        </div>
-        <img [src]="verN.imagenURL" class="img-fluid" alt="Imagen en grande">
-        <div class="col-md-12 ms-auto justify-content-md-start mt-auto pt-2">
-          <p>{{verN.descripcion}}</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN: Modal de Leer mas.. -->
-                                
+                              <div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content custom-modal">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{verN.titulo}}</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="col-md-12 justify-content-md-start mt-auto">
+                                        <p>Autor: {{verN.autor}}</p>
+                                      </div>
+                                      <img [src]="verN.imagenURL" class="img-fluid" alt="Imagen en grande">
+                                      <div class="col-md-12 justify-content-md-start mt-auto pt-2">
+                                        <p class="text-break text-justify">{{verN.descripcion}}</p>
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                                 <button class="btn btn-outline-secondary" (click)="verNoticia(p.id)" data-bs-toggle="modal" data-bs-target="#leerMas">
                                    <i class="bi bi-eye-fill"></i>
                                 </button>

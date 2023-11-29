@@ -6,8 +6,8 @@ import { AuthService } from '../servicios/auth.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../environment';
+
 
 export interface Noticia {
   autor: string;
@@ -15,6 +15,7 @@ export interface Noticia {
   titulo: string;
   categoria: string;
   imagenURL: string;
+  fecha: Date;
   // Añade otros campos según sea necesario
 }
 
@@ -31,17 +32,27 @@ export class EditarNoticiaAdminComponent {
     private authService: AuthService, private storage: AngularFireStorage, private modalService: NgbModal ){}
     
   ngOnInit():void {
-    this.consulta()
+    if (!this.authService.getAuthToken()) {
+      // Si no hay un token de autenticación, redirige al componente de inicio de sesión
+      this.router.navigate(['/editar-noticia-admin']);
+      this.consulta();
+    } else {
+      // Si el usuario está autenticado, realiza la consulta u otras operaciones necesarias
+      this.consulta();
+    }
+  
   }
   
   
   noticias = [
-    {no:1, autor: '¿Cuál?', descripcion:"", fecha:"", titulo:"", id:""},
-   
+    {no:1, autor: '¿Cuál?', descripcion:"", fecha:"", titulo:"", id:"", categoria:""},
+    
+    
   ]
-  newP={autor:"", descripcion:"", titulo:"", categoria:""}
+  newP={autor:"", descripcion:"", titulo:"", categoria:"", magenURL:""}
   modP={autor:"", descripcion:"", titulo:"", fecha:"", id:"", categoria:"", imagenURL:""}
-  verN={id:"", autor:"", descripcion:"", titulo:"", imagenURL:""}
+  
+  verN={id:"", autor:"", descripcion:"", titulo:"", imagenURL:"", categoria:""}
   
    // Objeto para rastrear el número de noticias en cada categoría
    contadorNoticias: { [categoria: string]: number } = {
@@ -68,6 +79,12 @@ export class EditarNoticiaAdminComponent {
   
     return `${categoria}${count.toString().padStart(2, '0')}`;
   }
+
+  nombreDocumentoSinContador(categoria: string, noticiaId: string): string {
+    // Puedes ajustar la lógica según tus necesidades
+    // Aquí simplemente estoy utilizando el ID de la noticia como nombre del documento
+    return noticiaId;
+  }
   
 
 
@@ -83,7 +100,8 @@ export class EditarNoticiaAdminComponent {
           descripcion: docData.descripcion || "",
           fecha: docData.fecha ? docData.fecha.toDate() : null,
           titulo: docData.titulo || "",
-          id: id // Usar el nombre del documento como id
+          id: id, // Usar el nombre del documento como id
+          categoria: docData.categoria || ""
         };
       });
       console.log(this.noticias);
@@ -108,91 +126,105 @@ export class EditarNoticiaAdminComponent {
       return;
     }
   
+    if (!this.selectedImage) {
+      alert("Debes seleccionar una imagen");
+      return;
+    }
+  
     const nombreDocumento = this.generarNombreDocumento(this.newP.categoria);
     const categoria = this.newP.categoria.toLowerCase();
   
     // Subir la imagen al Storage
-    if (this.selectedImage) {
-      const storagePath = `noticias/${categoria}/`; // Carpeta donde se almacenarán las imágenes
-      const imagenPath = `${storagePath}${nombreDocumento}.jpg`;
-      const storageRef = this.storage.ref(imagenPath);
-      const task = storageRef.put(this.selectedImage);
+    const storagePath = `noticias/${categoria}/`; // Carpeta donde se almacenarán las imágenes
+    const imagenPath = `${storagePath}${nombreDocumento}.jpg`;
+    const storageRef = this.storage.ref(imagenPath);
+    const task = storageRef.put(this.selectedImage);
   
-      // Escuchar los eventos de progreso y finalización de la carga
-      task.snapshotChanges().pipe(
-        finalize(() => {
-          // Obtener la URL de la imagen después de cargar
-          storageRef.getMetadata().subscribe(metadata => {
-            const fullPath = metadata.fullPath;
-            // Guardar la noticia en Firestore con la URL de la imagen
-            this.firestore.collection('noticias').doc(nombreDocumento).set({
-              autor: correo,
-              descripcion: this.newP.descripcion,
-              fecha: new Date(),
-              titulo: this.newP.titulo,
-              imagenURL: fullPath // Añadir la URL de la imagen
-            })
-            .then(() => {
-              // Operaciones después de guardar la noticia con éxito
-              console.log('Noticia creada con éxito');
-              this.consulta();
+    // Escuchar los eventos de progreso y finalización de la carga
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        // Obtener la URL de la imagen después de cargar
+        storageRef.getMetadata().subscribe(metadata => {
+          const fullPath = metadata.fullPath;
+          // Guardar la noticia en Firestore con la URL de la imagen
+          this.firestore.collection('noticias').doc(nombreDocumento).set({
+            autor: correo,
+            descripcion: this.newP.descripcion,
+            fecha: new Date(),
+            titulo: this.newP.titulo,
+            imagenURL: fullPath, // Añadir la URL de la imagen
+            categoria: this.newP.categoria
+          })
+          .then(() => {
+            // Operaciones después de guardar la noticia con éxito
+            console.log('Noticia creada con éxito');
+            this.consulta();
   
-              // Restablecer los valores a valores iniciales o vacíos
-              this.newP = { autor: '', descripcion: '', titulo: '', categoria: 'General' };
-            })
-            .catch(error => {
-              // Manejo de errores al guardar la noticia
-              console.error('Error al crear la noticia:', error);
-              alert('Error al crear la noticia. Por favor, inténtalo de nuevo.');
-            });
+            // Restablecer los valores a valores iniciales o vacíos
+            this.newP = { autor: '', descripcion: '', titulo: '', categoria: 'General', magenURL: ''  };
+          })
+          .catch(error => {
+            // Manejo de errores al guardar la noticia
+            console.error('Error al crear la noticia:', error);
+            alert('Error al crear la noticia. Por favor, inténtalo de nuevo.');
           });
-        })
-      ).subscribe();
-    } else {
-      // Si no hay imagen seleccionada, solo guardar la noticia sin imagen
-      this.firestore.collection('noticias').doc(nombreDocumento).set({
-        autor: correo,
-        descripcion: this.newP.descripcion,
-        fecha: new Date(),
-        titulo: this.newP.titulo,
-        // Otros campos que desees incluir...
+        });
       })
-      .then(() => {
-        // Operaciones después de guardar la noticia con éxito
-        console.log('Noticia creada con éxito');
-        this.consulta();
-  
-        // Restablecer los valores a valores iniciales o vacíos
-        this.newP = { autor: '', descripcion: '', titulo: '', categoria: 'General' };
-      })
-      .catch(error => {
-        // Manejo de errores al guardar la noticia
-        console.error('Error al crear la noticia:', error);
-        alert('Error al crear la noticia. Por favor, inténtalo de nuevo.');
-      });
-    }
+    ).subscribe();
   }
 
   borrarNoticia(id: string) {
     const confirmacion = window.confirm("¿Estás seguro de querer eliminar esta noticia?");
+    
+    if (!confirmacion) {
+      // El usuario canceló la eliminación
+      return;
+    }
   
-  if (!confirmacion) {
-    // El usuario canceló la eliminación
-    return;
-  }
-    this.firestore.collection('noticias').doc(id).delete().then(() => {
-      console.log('Noticia eliminada con éxito');
-      this.consulta();
-    }).catch(error => {
-      console.error('Error al eliminar la noticia:', error);
-      // Manejar el error si es necesario
+    // Obtener la URL de la imagen de la noticia
+    this.firestore.collection('noticias').doc(id).get().subscribe(snapshot => {
+      if (snapshot.exists) {
+        const data = snapshot.data() as Noticia;
+        const imagenURL = data.imagenURL;
+  
+        // Eliminar la noticia
+        this.firestore.collection('noticias').doc(id).delete().then(() => {
+          console.log('Noticia eliminada con éxito');
+  
+          // Eliminar la imagen del almacenamiento
+          this.eliminarImagenAlmacenamiento(imagenURL);
+  
+          // Realizar otras operaciones después de eliminar la noticia
+          this.consulta();
+        }).catch(error => {
+          console.error('Error al eliminar la noticia:', error);
+          // Manejar el error si es necesario
+        });
+      } else {
+        console.log('No se encontró la noticia con el ID:', id);
+      }
     });
+  }
+  
+  private eliminarImagenAlmacenamiento(imagenURL: string) {
+    const storageRef = this.storage.ref(imagenURL);
+  
+    // Eliminar la imagen del almacenamiento
+    storageRef.delete().subscribe(
+      () => {
+        console.log('Imagen eliminada con éxito');
+      },
+      error => {
+        console.error('Error al eliminar la imagen:', error);
+        // Manejar el error si es necesario
+      }
+    );
   }
 
   
   
   verNoticia(noticiaId: string) {
-   
+    debugger;
     console.log('Iniciando verNoticia para:', noticiaId);
   
     const correo = localStorage.getItem("correo");
@@ -204,50 +236,60 @@ export class EditarNoticiaAdminComponent {
   
     console.log('Correo encontrado:', correo);
   
-    this.firestore.collection('noticias').doc(noticiaId).get().subscribe(snapshot => {
-      console.log('Snapshot obtenido:', snapshot);
+    this.firestore.collection('noticias').doc(noticiaId).get().subscribe(
+      snapshot => {
+        console.log('Snapshot obtenido:', snapshot);
   
-      if (snapshot.exists) {
-        const data = snapshot.data() as Noticia;
-        console.log('Datos de la noticia:', data);
+        if (snapshot.exists) {
+          const data = snapshot.data() as Noticia;
+          console.log('Datos de la noticia:', data);
   
-        if (data && data.categoria) {
-          const categoria = data.categoria.toLowerCase();
-          console.log('Categoría de la noticia:', categoria);
+          if (data) {
+            const categoria = noticiaId.toLowerCase();
+            console.log('Categoría de la noticia:', categoria);
   
-          const storagePath = `noticias/${categoria}/`;
-          const imagenPath = `${storagePath}${noticiaId}.jpg`;
-          console.log('Ruta de la imagen:', imagenPath);
+            const storagePath = `noticias/${data.categoria}/`;
+            const imagenPath = `${storagePath}${noticiaId}.jpg`;
+            console.log('Ruta de la imagen:', imagenPath);
   
-          const storageRef = this.storage.ref(imagenPath);
+            const decodedImagenPath = decodeURIComponent(imagenPath);
+            console.log('Ruta de la imagen después de decodificar:', decodedImagenPath);
   
-          storageRef.getMetadata().subscribe(metadata => {
-            console.log('Metadatos de la imagen:', metadata);
+            const storageRef = this.storage.ref(decodedImagenPath);
   
-            const fullPath = metadata.fullPath;
-            console.log('Ruta completa de la imagen:', fullPath);
+            // Obtener la URL de la imagen
+            storageRef.getDownloadURL().subscribe(
+              imagenURL => {
+                console.log('URL de la imagen:', imagenURL);
   
-            // Construir la URL completa de la imagen
-            const storageBaseUrl = 'https://storage.googleapis.com/';
-            const imagenURLCompleta = storageBaseUrl + encodeURIComponent(environment.firebase.storageBucket) + '/' + encodeURIComponent(fullPath);
+                // Mostrar la imagen en tu interfaz de usuario (puedes usar esta URL en tu HTML)
+                this.verN = {
+                  id: noticiaId,
+                  autor: correo,
+                  descripcion: data.descripcion,
+                  titulo: data.titulo,
+                  imagenURL: imagenURL,
+                  categoria: data.categoria
+                };
   
-            this.verN = {
-              id: noticiaId,
-              autor: correo,
-              descripcion: data.descripcion,
-              titulo: data.titulo,
-              imagenURL: imagenURLCompleta
-            };
+                console.log('Datos de verN antes de abrir el modal:', this.verN);
   
-            console.log('Datos de verN antes de abrir el modal:', this.verN);
-  
-            this.modalService.open("leerMas", { size: "lg", centered: true });
-          });
+                // Abre el modal
+                this.modalService.open( { size: "lg", centered: true });
+              },
+              error => {
+                console.error('Error al obtener la URL de la imagen:', error);
+              }
+            );
+          }
+        } else {
+          console.log('No se encontró la noticia con el ID:', noticiaId);
         }
-      } else {
-        console.log('No se encontró la noticia con el ID:', noticiaId);
+      },
+      error => {
+        console.error('Error al obtener el documento de la noticia:', error);
       }
-    });
+    );
   }
 testConsole() {
   console.log('Datos de verN en HTML:', this.verN);

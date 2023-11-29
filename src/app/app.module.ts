@@ -21,15 +21,9 @@ import { Auth, getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environment';
-<<<<<<< HEAD
 import { AuthService } from './servicios/auth.service';
-
-=======
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from './component/navbar/navbar.component';
-import { FooterComponent } from './component/footer/footer.component';
-import { NoticiasComponent } from './component/noticias/noticias.component';
->>>>>>> e9745650da9e0cef8ea2bc30fbaf8952b3740e8f
+
 
 
 @NgModule({
@@ -45,7 +39,7 @@ import { NoticiasComponent } from './component/noticias/noticias.component';
    EditarNoticiaAdminComponent,
    NavbarComponent,
    FooterComponent,
-   NoticiasComponent
+   NoticiasComponent,
    
  ],
  imports: [
@@ -65,7 +59,6 @@ import { NoticiasComponent } from './component/noticias/noticias.component';
     // error solution NullInjectError
     AngularFireModule.initializeApp(environment.firebase)
  ],
- 
  providers: [ AuthService ],
  bootstrap: [AppComponent]
 })
