@@ -7,9 +7,14 @@ import { SistemaComponent } from './carreras/sistema/sistema.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
-import { AuthGuard } from './login/guard/guard.component';
-import { CrudUsuariosComponent } from './crud-usuarios/crud-usuarios/crud-usuarios.component';
-import { EditUserModalComponent } from './crud-usuarios/edit-user-modal/edit-user-modal.component';
+import { BioquimicaComponent } from './carreras/bioquimica/bioquimica.component';
+import { EmpresarialComponent } from './carreras/empresarial/empresarial.component';
+import { MecatronicaComponent } from './carreras/mecatronica/mecatronica.component';
+import { NanotecnologiaComponent } from './carreras/nanotecnologia/nanotecnologia.component';
+import { IndustrialComponent } from './carreras/industrial/industrial.component';
+import { TicsComponent } from './carreras/tics/tics.component';
+import { AuthGuard } from './guards/auth.guards';
+
 
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},

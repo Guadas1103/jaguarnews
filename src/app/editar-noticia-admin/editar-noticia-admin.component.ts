@@ -5,10 +5,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../servicios/auth.service'; 
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
-import { NgbModal, NgbModalRef  } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
-
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialog } from '@angular/material/dialog';
+import { environment } from '../environment';
 
 export interface Noticia {
   autor: string;
