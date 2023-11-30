@@ -6,6 +6,8 @@ import { Injectable, OnInit } from "@angular/core";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'firebase/auth';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,7 +19,7 @@ export class AuthService {
   
    constructor(router: Router,  private fb: FormBuilder,
     private auth: AngularFireAuth,
-    private firestore: AngularFirestore) {
+    private firestore: AngularFirestore ) {
      this.router = router;
 
 
@@ -31,24 +33,12 @@ export class AuthService {
     
   }
   // Obtener token de autenticación//
-  getAuthToken(): Promise<string | null> {
-    return new Promise((resolve, reject) => {
-      this.auth.onAuthStateChanged((user) => {
-        if (user) {
-          // Obtén el token de autenticación del usuario
-          user.getIdToken().then((token) => {
-            resolve(token);
-          }).catch((error) => {
-            console.error('Error al obtener el token de autenticación:', error);
-            reject(error);
-          });
-        } else {
-          resolve(null);
-        }
-      });
-    });
-   }
+  getUserDetails(): Observable<any> {
+    return this.auth.authState; // authState ya proporciona la información del usuario actual
+  }
 
+
+   
   isLoggedIn() {
     return this.loggedIn;
   }  
@@ -93,6 +83,8 @@ export class AuthService {
         console.error('Error al iniciar sesión:', errorMessage);
       });
    }
+   
+   
 
    async loginWithGoogle() {
      try {
@@ -111,7 +103,6 @@ export class AuthService {
            email: user.email,
            numControl: user.email.substring(0, 9),
            lastName: lastName,
-           mlastName: mlastName,
            name: name,
          });
        } else{

@@ -7,6 +7,7 @@ import { Observable, catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiRestService {
+  [x: string]: any;
 urlLogin = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA3v3gqTlJWer6GNopRrBxqZB1PnYc8qbQ";
 urlRegister = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA3v3gqTlJWer6GNopRrBxqZB1PnYc8qbQ";
 url = "https://firestore.googleapis.com/v1/projects/jaguarnewsdb/databases/(default)/documents/"
@@ -65,8 +66,12 @@ constructor(private http: HttpClient) { }
       return this.http.delete(this.url + "noticias/"+id)
     }
 
-    getAllNoticias(){
+    getAllNews(){
       return this.http.get<any>(this.url + 'noticias');
+    }
+    formatDate(timestamp: any): string {
+      // Implementa la lógica para formatear el timestamp según tus necesidades
+      return timestamp;
     }
 
   

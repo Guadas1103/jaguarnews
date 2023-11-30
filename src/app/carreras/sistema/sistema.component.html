@@ -45,79 +45,90 @@
                 <br>
             </div>
 
-            <app-noticias></app-noticias>
+            <!-- <app-noticias></app-noticias> -->
 
-            <!-- Tarjetas de Noticias 1 
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col " *ngFor="let noticia of noticias">        
-                    <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-6">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#imagenModal">
-                                    <img src="../../../assets/noticias_prueba.jpg" class="img-fluid rounded-start" alt="...">
-                                </a>
+            <!-- Tarjetas de Noticias 1 -->
+              <div *ngIf="noticias.length > 0; else noNoticias">   <!--*ngIf="noticiasConImagenes.length > 0; else noNoticias" -->
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                     <div class="col " *ngFor="let item of noticias">   <!--*ngFor="let item of noticiasConImagenes" -->
+                         <ng-container *ngIf="item.categoria === 'sistemas'"> <!--*ngIf="item.noticiaConImagen.categoria === 'sistemas'" -->
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <a href="#" (click)="verNoticia(item.id)" data-bs-toggle="modal" data-bs-target="#imagenModal">
+                                        <img [src]="item.imagenURL" class="img-fluid rounded-start" alt="...">  
+                                    </a>  
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> {{item.titulo}} </h5>
+                                        <p class="card-text" id="textoCorto">
+                                             {{item.descripcion}} 
+                                            <a href="#" (click)="verNoticia(item.id)" id="textoLargo" data-bs-toggle="modal" data-bs-target="#leerMas">Leer más...</a>
+                                        </p>
+                                       
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ noticia.titulo }}</h5>
-                                    <p class="card-text" id="textoCorto">
-                                        {{noticia.descripcion}}
-                                        <a href="#" id="textoLargo" data-bs-toggle="modal" data-bs-target="#leerMas">Leer más...</a>
-                                    </p>
+                            <div class="row g-0">
+                                <div class="row align-items-center justify-content-center mb-3">
+                                    <div class="col-md-12 text-center text-md-start">
+                                        <i class="bi bi-heart-fill display-6 me-3"></i>
+                                        <a href="#" id="comentario" data-bs-toggle="modal" data-bs-target="#comentarioModal" >
+                                            <i class="bi bi-chat-dots display-6"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row g-0">
-                            <div class="row align-items-center justify-content-center mb-3">
-                                <div class="col-md-12 text-center text-md-start">
-                                    <i class="bi bi-heart-fill display-6 me-3"></i>
-                                    <a href="#" id="comentario" data-bs-toggle="modal" data-bs-target="#comentarioModal" >
-                                        <i class="bi bi-chat-dots display-6"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    </ng-container>    
                     </div>
                 </div>
-            </div>
-             FIN: Tarjetas de Noticias 1 -->
+                </div>
+                 <ng-template #noNoticias>
+                    <p>{{ mensaje }}</p>
+                  </ng-template> 
+            <!-- FIN: Tarjetas de Noticias 1 -->
 
             <!-- Modal para mostrar la imagen en grande -->
             <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="imagenModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <img src="../../../assets/noticias_prueba.jpg" class="img-fluid" alt="Imagen en grande">
+                            <img [src]="verN.imagenURL" class="img-fluid" alt="Imagen en grande">
                         </div>
                     </div>
                 </div>
             </div>
             <!-- FIN: Modal para mostrar la imagen en grande -->
 
-            <!-- Modal de Leer mas... -->
-            <div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <!-- Modal de Leer mas... -->
+             <div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
-                  <div class="modal-content">
+                <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Noticia title</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{verN.titulo}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-12 ms-auto justify-content-md-start mt-auto">
                             <p>Autor</p>
                         </div>
-                        <img src="../../../assets/noticias_prueba.jpg" class="img-fluid" alt="Imagen en grande">
+                        <img [src]="verN.imagenURL" class="img-fluid" alt="Imagen en grande">
                         <div class="col-md-12 ms-auto justify-content-md-start mt-auto pt-2">
-                            <p>Buenos días #FuturosIngenierosEnSistemas 😎 Un día como hoy pero de 1815 hace George Boole, considerado como uno de los fundadores del campo de las Ciencias de la Computación.</p>
+                            <p>{{verN.descripcion}}</p>
                         </div>               
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
-                  </div>
                 </div>
-              </div>
+                </div>
+            </div>
             <!-- FIN: Modal de Leer mas.. -->
+
+            
             
             <!-- Modal Para Comentarios -->
             <div class="modal fade" id="comentarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="comentarioModalLabel" aria-hidden="true">

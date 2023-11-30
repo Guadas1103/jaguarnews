@@ -33,6 +33,11 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog'; // Importa MatDialogModule
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { BioquimicaComponent } from './carreras/bioquimica/bioquimica.component';
+import { EmpresarialComponent } from './carreras/empresarial/empresarial.component';
+import { MecatronicaComponent } from './carreras/mecatronica/mecatronica.component';
+import { NanotecnologiaComponent } from './carreras/nanotecnologia/nanotecnologia.component';
+import { TicsComponent } from './carreras/tics/tics.component';
 
 
 @NgModule({
@@ -50,7 +55,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
    FooterComponent,
    NoticiasComponent,
    CrudUsuariosComponent,
-   EditUserModalComponent
+   EditUserModalComponent,
+   BioquimicaComponent,
+   TicsComponent,
+   EmpresarialComponent,
+   MecatronicaComponent,
+   NanotecnologiaComponent,
    
  ],
  imports: [

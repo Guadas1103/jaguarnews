@@ -5,8 +5,12 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../servicios/auth.service'; 
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<<<< Temporary merge branch 1
+import { NgbModal, NgbModalRef  } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
+=========
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+>>>>>>>>> Temporary merge branch 2
 import { environment } from '../environment';
 
 export interface Noticia {
@@ -30,17 +34,15 @@ export class EditarNoticiaAdminComponent {
   constructor(private api: ApiRestService, 
     private router: Router, private firestore: AngularFirestore, 
     private authService: AuthService, private storage: AngularFireStorage, private modalService: NgbModal ){}
-    
+    correoUsuario: string = '';
   ngOnInit():void {
-    if (!this.authService.getAuthToken()) {
-      // Si no hay un token de autenticación, redirige al componente de inicio de sesión
-      this.router.navigate(['/editar-noticia-admin']);
-      this.consulta();
-    } else {
+    this.authService.getUserDetails().subscribe(user => {
+      if (user && user.email) {
+        this.correoUsuario = user.email;
+      }
+    });
       // Si el usuario está autenticado, realiza la consulta u otras operaciones necesarias
       this.consulta();
-    }
-  
   }
   obtenerURLImagen(noticiaId: string): Observable<string> {
     const storagePath = `noticias/${noticiaId.toLowerCase()}/`;
@@ -69,10 +71,10 @@ export class EditarNoticiaAdminComponent {
   
   noticias = [
     {no:1, autor: '¿Cuál?', descripcion:"", fecha:"", titulo:"", id:"", categoria:""},
-    
-    
+
+      
   ]
-  newP={autor:"", descripcion:"", titulo:"", categoria:"", magenURL:""}
+  newP={autor:"", descripcion:"", titulo:"", categoria:"", imagenURL:""}
   modP={autor:"", descripcion:"", titulo:"", fecha:"", id:"", categoria:"", imagenURL:""}
   
   verN={id:"", autor:"", descripcion:"", titulo:"", imagenURL:"", categoria:""}
@@ -141,59 +143,62 @@ export class EditarNoticiaAdminComponent {
   }
   
   crearNoticia() {
-    const correo = localStorage.getItem("correo") || "";
-    const fecha = new Date().toISOString();
+    // Obtener el correo del usuario actual desde el servicio de autenticación
+    this.authService.getUserDetails().subscribe(user => {
+      const correo = user?.email || "";
+      const fecha = new Date().toISOString();
   
-    if (this.newP.descripcion == "" || this.newP.titulo == "") {
-      alert("Debes escribir la descripción y seleccionar el autor");
-      return;
-    }
+      if (this.newP.descripcion == "" || this.newP.titulo == "") {
+        alert("Debes escribir la descripción y seleccionar el autor");
+        return;
+      }
   
-    if (!this.selectedImage) {
-      alert("Debes seleccionar una imagen");
-      return;
-    }
+      if (!this.selectedImage) {
+        alert("Debes seleccionar una imagen");
+        return;
+      }
   
-    const nombreDocumento = this.generarNombreDocumento(this.newP.categoria);
-    const categoria = this.newP.categoria.toLowerCase();
+      const nombreDocumento = this.generarNombreDocumento(this.newP.categoria);
+      const categoria = this.newP.categoria.toLowerCase();
   
-    // Subir la imagen al Storage
-    const storagePath = `noticias/${categoria}/`; // Carpeta donde se almacenarán las imágenes
-    const imagenPath = `${storagePath}${nombreDocumento}.jpg`;
-    const storageRef = this.storage.ref(imagenPath);
-    const task = storageRef.put(this.selectedImage);
+      // Subir la imagen al Storage
+      const storagePath = `noticias/${categoria}/`; // Carpeta donde se almacenarán las imágenes
+      const imagenPath = `${storagePath}${nombreDocumento}.jpg`;
+      const storageRef = this.storage.ref(imagenPath);
+      const task = storageRef.put(this.selectedImage);
   
-    // Escuchar los eventos de progreso y finalización de la carga
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        // Obtener la URL de la imagen después de cargar
-        storageRef.getMetadata().subscribe(metadata => {
-          const fullPath = metadata.fullPath;
-          // Guardar la noticia en Firestore con la URL de la imagen
-          this.firestore.collection('noticias').doc(nombreDocumento).set({
-            autor: correo,
-            descripcion: this.newP.descripcion,
-            fecha: new Date(),
-            titulo: this.newP.titulo,
-            imagenURL: fullPath, // Añadir la URL de la imagen
-            categoria: this.newP.categoria
-          })
-          .then(() => {
-            // Operaciones después de guardar la noticia con éxito
-            console.log('Noticia creada con éxito');
-            this.consulta();
+      // Escuchar los eventos de progreso y finalización de la carga
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          // Obtener la URL de la imagen después de cargar
+          storageRef.getMetadata().subscribe(metadata => {
+            const fullPath = metadata.fullPath;
+            // Guardar la noticia en Firestore con la URL de la imagen
+            this.firestore.collection('noticias').doc(nombreDocumento).set({
+              autor: correo, // Utilizar el correo del usuario loggeado como autor
+              descripcion: this.newP.descripcion,
+              fecha: new Date(),
+              titulo: this.newP.titulo,
+              imagenURL: fullPath, // Añadir la URL de la imagen
+              categoria: this.newP.categoria
+            })
+            .then(() => {
+              // Operaciones después de guardar la noticia con éxito
+              console.log('Noticia creada con éxito');
+              this.consulta();
   
-            // Restablecer los valores a valores iniciales o vacíos
-            this.newP = { autor: '', descripcion: '', titulo: '', categoria: 'General', magenURL: ''  };
-          })
-          .catch(error => {
-            // Manejo de errores al guardar la noticia
-            console.error('Error al crear la noticia:', error);
-            alert('Error al crear la noticia. Por favor, inténtalo de nuevo.');
+              // Restablecer los valores a valores iniciales o vacíos
+              this.newP = { autor: '', descripcion: '', titulo: '', categoria: 'General', imagenURL: ''  };
+            })
+            .catch(error => {
+              // Manejo de errores al guardar la noticia
+              console.error('Error al crear la noticia:', error);
+              alert('Error al crear la noticia. Por favor, inténtalo de nuevo.');
+            });
           });
-        });
-      })
-    ).subscribe();
+        })
+      ).subscribe();
+    });
   }
 
   borrarNoticia(id: string) {
