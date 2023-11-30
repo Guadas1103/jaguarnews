@@ -4,6 +4,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { SistemaComponent } from './carreras/sistema/sistema.component';
+import { BioquimicaComponent } from './carreras/bioquimica/bioquimica.component';
+import { EmpresarialComponent } from './carreras/empresarial/empresarial.component';
+import { MecatronicaComponent } from './carreras/mecatronica/mecatronica.component';
+import { NanotecnologiaComponent } from './carreras/nanotecnologia/nanotecnologia.component';
+import { IndustrialComponent } from './carreras/industrial/industrial.component';
+import { TicsComponent } from './carreras/tics/tics.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
@@ -26,7 +32,9 @@ const routes: Routes = [
   {path:'sistema', component: SistemaComponent},
   { path: 'home-admin', component: HomeAdminComponent },
   {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent},
-  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent}
+  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent},
+  {path: 'tics', component: TicsComponent}
+
  ];
  
 

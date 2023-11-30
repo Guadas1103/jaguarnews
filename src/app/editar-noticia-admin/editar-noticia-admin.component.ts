@@ -5,13 +5,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../servicios/auth.service'; 
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
-<<<<<<<<< Temporary merge branch 1
 import { NgbModal, NgbModalRef  } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
-=========
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
->>>>>>>>> Temporary merge branch 2
 import { environment } from '../environment';
+import { Observable } from 'rxjs';
 
 export interface Noticia {
   autor: string;
