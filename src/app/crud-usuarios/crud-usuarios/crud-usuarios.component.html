@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Foto</th>
+    <th>Nombre</th>
+    <th>Email</th>
+    <th>Rol</th>
+    <th>Acciones</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td><img [src]="user.photoURL" alt="User Photo"></td>
+    <td>{{ user.name }} {{ user.lastName }} {{ user.mlastName }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.rol }}</td>
+    <td>
+    <button (click)="updateUser(user)">Actualizar</button>
+      <button (click)="deleteUser(user)">Eliminar</button> 
+    </td>
+  </tr>
+</table>
+

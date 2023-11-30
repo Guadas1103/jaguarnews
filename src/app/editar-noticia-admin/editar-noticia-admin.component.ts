@@ -5,8 +5,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../servicios/auth.service'; 
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { environment } from '../environment';
+import { NgbModal, NgbModalRef  } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+
 
 
 export interface Noticia {
@@ -41,6 +42,29 @@ export class EditarNoticiaAdminComponent {
       this.consulta();
     }
   
+  }
+  obtenerURLImagen(noticiaId: string): Observable<string> {
+    const storagePath = `noticias/${noticiaId.toLowerCase()}/`;
+    const imagenPath = `${storagePath}${noticiaId}.jpg`;
+    const storageRef = this.storage.ref(imagenPath);
+  
+    return storageRef.getDownloadURL();
+  }
+
+  onImagenSeleccionada(event: any): void {
+    const archivo = event.target.files[0];
+  
+    if (archivo) {
+      this.selectedImage = archivo;
+      const lector = new FileReader();
+      lector.readAsDataURL(archivo);
+      lector.onload = () => {
+        this.modP.imagenURL = lector.result as string;
+      };
+    }
+  
+    // Limpiar el input de selección de imagen
+    event.target.value = null;
   }
   
   
@@ -275,7 +299,7 @@ export class EditarNoticiaAdminComponent {
                 console.log('Datos de verN antes de abrir el modal:', this.verN);
   
                 // Abre el modal
-                this.modalService.open( { size: "lg", centered: true });
+                this.modalService.open({ size: "lg", centered: true });
               },
               error => {
                 console.error('Error al obtener la URL de la imagen:', error);
@@ -294,36 +318,63 @@ export class EditarNoticiaAdminComponent {
 testConsole() {
   console.log('Datos de verN en HTML:', this.verN);
 }
-  modificarNoticia() {
+noticiaModificada: boolean = false;
+modificarNoticia() {
+  debugger;
   const confirmacion = window.confirm("¿Estás seguro de querer modificar esta noticia?");
 
-  if (!confirmacion) {
-    // El usuario canceló la modificación
-    return;
-  }
+  if (confirmacion) {
+    // Verificar si se seleccionó una nueva imagen
+    if (this.selectedImage) {
+      // Subir la nueva imagen al Storage y actualizar la noticia
+      const storagePath = `noticias/${this.modP.categoria}/`;
+      const imagenPath = `${storagePath}${this.modP.id}.jpg`;
+      const storageRef = this.storage.ref(imagenPath);
+      const task = this.storage.upload(imagenPath, this.selectedImage);
 
-  // Verificar si se seleccionó una nueva imagen
-  if (this.selectedImage) {
-    // Subir la nueva imagen al Storage y actualizar la noticia
-    const storagePath = `noticias/${this.modP.categoria}/`;
-    const imagenPath = `${storagePath}${this.modP.id}.jpg`;
-    const storageRef = this.storage.ref(imagenPath);
-    const task = storageRef.put(this.selectedImage);
+      // Escuchar los eventos de progreso y finalización de la carga
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          // Obtener la URL de la imagen después de cargar
+          storageRef.getDownloadURL().subscribe(url => {
+            // Actualizar la noticia en Firestore con la nueva URL de la imagen
+            this.actualizarNoticia(url);
+            this.noticiaModificada = true;
 
-    // Escuchar los eventos de progreso y finalización de la carga
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        // Obtener la URL de la imagen después de cargar
-        storageRef.getDownloadURL().subscribe(url => {
-          // Actualizar la noticia en Firestore con la nueva URL de la imagen
-          this.actualizarNoticia(url);
-        });
-      })
-    ).subscribe();
+            // Cerrar el modal después de la modificación
+            this.cerrarModal();
+          });
+        })
+      ).subscribe();
+    } else {
+      // No se seleccionó una nueva imagen, solo actualizar la noticia en Firestore
+      this.actualizarNoticia();
+
+      this.noticiaModificada = true;
+      // Cerrar el modal después de la modificación
+      this.cerrarModal();
+    }
   } else {
-    // No se seleccionó una nueva imagen, solo actualizar la noticia en Firestore
-    this.actualizarNoticia();
+    // El usuario canceló la modificación
+    console.log("Modificación cancelada por el usuario.");
   }
+}
+
+// Agrega declaraciones de consola para rastrear el flujo de ejecución
+cerrarModal() {
+  try {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.noticiaModificada = false;
+      console.log('Modal cerrado');
+    }
+  } catch (error) {
+    console.error('Error al cerrar el modal:', error);
+  }
+}
+private modalRef: NgbModalRef | null = null;
+formValido(): boolean {
+  return !!this.modP.titulo && !!this.modP.descripcion && !!this.modP.imagenURL;
 }
 
 private actualizarNoticia(imagenURL?: string) {
@@ -331,11 +382,15 @@ private actualizarNoticia(imagenURL?: string) {
   const updatedNoticia: any = {
     titulo: this.modP.titulo,
     descripcion: this.modP.descripcion,
+    imagenURL: this.modP.imagenURL
   };
 
   // Agregar la URL de la nueva imagen si está presente
   if (imagenURL) {
-    updatedNoticia.imagenURL = imagenURL;
+    // Puedes almacenar solo la ruta relativa
+    const storagePath = `noticias/${this.modP.categoria}/`;
+    const imagenPath = `${storagePath}${this.modP.id}.jpg`;
+    updatedNoticia.imagenURL = imagenPath;
   }
 
   // Actualizar la noticia en Firestore
@@ -343,10 +398,16 @@ private actualizarNoticia(imagenURL?: string) {
     .then(() => {
       console.log('Noticia modificada con éxito');
       this.consulta();
+
+      // Cerrar el modal después de la modificación
+      this.modalService.dismissAll();
     })
     .catch(error => {
       console.error('Error al modificar la noticia:', error);
       // Manejar el error si es necesario
+    })
+    .finally(() => {
+      console.log('Finalizando la actualización de la noticia');
     });
 }
   editarNoticia(p:any){

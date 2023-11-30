@@ -27,6 +27,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { CrudUsuariosComponent } from './crud-usuarios/crud-usuarios/crud-usuarios.component';
+import { EditUserModalComponent } from './crud-usuarios/edit-user-modal/edit-user-modal.component';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog'; // Importa MatDialogModule
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -42,7 +48,9 @@ import { NavbarComponent } from './component/navbar/navbar.component';
    EditarNoticiaAdminComponent,
    NavbarComponent,
    FooterComponent,
-   NoticiasComponent
+   NoticiasComponent,
+   CrudUsuariosComponent,
+   EditUserModalComponent
    
  ],
  imports: [
@@ -60,7 +68,11 @@ import { NavbarComponent } from './component/navbar/navbar.component';
    provideAuth(() => getAuth()),
    provideFirestore(() => getFirestore()),
   RouterModule,
-  AngularFireModule.initializeApp(environment.firebase)
+  MatFormFieldModule, 
+  MatDialogModule,
+  MatInputModule,
+  MatGridListModule,
+  AngularFireModule.initializeApp(environment.firebase),
  ],
  providers: [ AuthService ],
  bootstrap: [AppComponent]

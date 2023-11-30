@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSubmit() {
-    const { email, password, name, lastName, mLastName } = this.registerForm.value;
-    await this.authService.register(email, password, name, lastName, mLastName);
+    const { email, password, name, lastName, mlastName } = this.registerForm.value;
+    await this.authService.register(email, password, name, lastName, mlastName);
     this.registerForm.reset();
   }
  

@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Editar Usuario</h1>
+<div mat-dialog-content>
+ <mat-grid-list cols="2" rowHeight="100px">
+  <mat-grid-tile>
+    <mat-form-field [style.width.px]=327>
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="data.email" name="email">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="data.name" name="name">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input matInput [(ngModel)]="data.lastName" name="lastName">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Segundo Apellido</mat-label>
+      <input matInput [(ngModel)]="data.mlastName" name="mlastName">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Rol</mat-label>
+      <input matInput [(ngModel)]="data.rol" name="rol">
+    </mat-form-field>
+  </mat-grid-tile>
+ </mat-grid-list>
+</div>
+<div mat-dialog-actions>
+ <button mat-button mat-dialog-close>Cerrar</button>
+ <button mat-button (click)="updateUser()">Guardar</button>
+</div>
+

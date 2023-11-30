@@ -8,9 +8,8 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
 import { AuthGuard } from './login/guard/guard.component';
-
-
-
+import { CrudUsuariosComponent } from './crud-usuarios/crud-usuarios/crud-usuarios.component';
+import { EditUserModalComponent } from './crud-usuarios/edit-user-modal/edit-user-modal.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},
@@ -21,7 +20,9 @@ const routes: Routes = [
   {path:'sistema', component: SistemaComponent},
   { path: 'home-admin', component: HomeAdminComponent },
   {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent},
-  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent}
+  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent},
+  {path: 'crud-usuarios', component: CrudUsuariosComponent},
+  {path: 'edit-user-modal', component: EditUserModalComponent}
  ];
  
 
