@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { SistemaComponent } from './carreras/sistema/sistema.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
+import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
 import { AuthGuard } from './login/guard/guard.component';
 
 

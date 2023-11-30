@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
 
@@ -7,21 +7,25 @@ import { Router } from '@angular/router';
  templateUrl: './login.component.html',
  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
  email: string ='';
  password: string = '';
 
  constructor(private authService: AuthService, private router: Router) { }
 
- async login(email: string, password: string) {
-  try {
-    await this.authService.loginWithEmail(email, password);
-    // Redirige al usuario a la ruta 'home' después de iniciar sesión
-    this.router.navigate(['home']);
-  } catch (error) {
-    console.error('Error al iniciar sesión:', error);
+ ngOnInit(): void {}
+
+  async onSubmit() {
+    try {
+      const result = await this.authService.login(this.email, this.password);
+      console.log('Inicio de sesión exitoso:', result);
+      this.router.navigate(['home']);
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
   }
- }
+
+
 
  async loginWithGoogle() {
  try{
