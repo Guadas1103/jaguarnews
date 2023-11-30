@@ -27,6 +27,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { NanotecnologiaComponent } from './carreras/nanotecnologia/nanotecnologia.component';
+import { MecatronicaComponent } from './carreras/mecatronica/mecatronica.component';
+import { EmpresarialComponent } from './carreras/empresarial/empresarial.component';
+import { TicsComponent } from './carreras/tics/tics.component';
+import { BioquimicaComponent } from './carreras/bioquimica/bioquimica.component';
 
 
 @NgModule({
@@ -42,11 +47,17 @@ import { NavbarComponent } from './component/navbar/navbar.component';
    EditarNoticiaAdminComponent,
    NavbarComponent,
    FooterComponent,
-   NoticiasComponent
+   NoticiasComponent,
+   NanotecnologiaComponent,
+   MecatronicaComponent,
+   EmpresarialComponent,
+   TicsComponent,
+   BioquimicaComponent
    
  ],
  imports: [
-    
+    // error solution NullInjectError
+     AngularFireModule.initializeApp(environment.firebase),
    BrowserModule,
    AppRoutingModule,
    HttpClientModule,
@@ -55,12 +66,9 @@ import { NavbarComponent } from './component/navbar/navbar.component';
    BrowserAnimationsModule,
    ToastrModule.forRoot(),
    NgbModule,
-   AngularFirestoreModule,
    provideFirebaseApp(() => initializeApp(environment.firebase)),
    provideAuth(() => getAuth()),
-   provideFirestore(() => getFirestore()),
-  RouterModule,
-  AngularFireModule.initializeApp(environment.firebase)
+   provideFirestore(() => getFirestore())
  ],
  providers: [ AuthService ],
  bootstrap: [AppComponent]

@@ -5,8 +5,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../servicios/auth.service'; 
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { MatDialog } from '@angular/material/dialog';
+import { NgbModal, NgbModalRef  } from '@ng-bootstrap/ng-bootstrap';
+//import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../environment';
 import { Observable } from 'rxjs';
 
@@ -72,8 +72,8 @@ export class EditarNoticiaAdminComponent {
   
   noticias = [
     {no:1, autor: '¿Cuál?', descripcion:"", fecha:"", titulo:"", id:"", categoria:""},
-    
-    
+
+      
   ]
   newP={autor:"", descripcion:"", titulo:"", categoria:"", magenURL:""}
   modP={autor:"", descripcion:"", titulo:"", fecha:"", id:"", categoria:"", imagenURL:""}

@@ -8,9 +8,12 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
 import { AuthGuard } from './login/guard/guard.component';
-
-
-
+import { BioquimicaComponent } from './carreras/bioquimica/bioquimica.component';
+import { EmpresarialComponent } from './carreras/empresarial/empresarial.component';
+import { MecatronicaComponent } from './carreras/mecatronica/mecatronica.component';
+import { NanotecnologiaComponent } from './carreras/nanotecnologia/nanotecnologia.component';
+import { IndustrialComponent } from './carreras/industrial/industrial.component';
+import { TicsComponent } from './carreras/tics/tics.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},
@@ -18,7 +21,13 @@ const routes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path:'signup', component: RegisterComponent},
+  {path:'bioquimica', component:BioquimicaComponent},
+  {path:'empresarial', component:EmpresarialComponent},
+  {path:'insdustrial', component:IndustrialComponent},
+  {path:'mecatronica', component:MecatronicaComponent},
+  {path:'nanotecnologia', component: NanotecnologiaComponent},
   {path:'sistema', component: SistemaComponent},
+  {path:'tics', component:TicsComponent},
   { path: 'home-admin', component: HomeAdminComponent },
   {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent},
   {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent}

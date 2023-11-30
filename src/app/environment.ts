@@ -13,8 +13,6 @@ export const environment = {
         messagingSenderId :"125883732306",
         locationId: "nam5 (us-central)",
     },
-        
-        
 };
 
   
