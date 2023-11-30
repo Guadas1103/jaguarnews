@@ -27,10 +27,11 @@ const routes: Routes = [
   {path:'mecatronica', component:MecatronicaComponent},
   {path:'nanotecnologia', component: NanotecnologiaComponent},
   {path:'sistema', component: SistemaComponent},
-  {path:'tics', component:TicsComponent},
-  { path: 'home-admin', component: HomeAdminComponent },
-  {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent},
-  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent}
+  {path:'tics', component: TicsComponent},
+  
+  { path: 'home-admin', component: HomeAdminComponent, canActivate: [AuthGuard]},
+  {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent, canActivate: [AuthGuard]},
+  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent, canActivate: [AuthGuard]}
  ];
  
 

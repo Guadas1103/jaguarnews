@@ -6,6 +6,8 @@ import { Injectable, OnInit } from "@angular/core";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'firebase/auth';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,7 +19,7 @@ export class AuthService {
   
    constructor(router: Router,  private fb: FormBuilder,
     private auth: AngularFireAuth,
-    private firestore: AngularFirestore) {
+    private firestore: AngularFirestore ) {
      this.router = router;
 
 
@@ -31,24 +33,12 @@ export class AuthService {
     
   }
   // Obtener token de autenticación//
-  getAuthToken(): Promise<string | null> {
-    return new Promise((resolve, reject) => {
-      this.auth.onAuthStateChanged((user) => {
-        if (user) {
-          // Obtén el token de autenticación del usuario
-          user.getIdToken().then((token) => {
-            resolve(token);
-          }).catch((error) => {
-            console.error('Error al obtener el token de autenticación:', error);
-            reject(error);
-          });
-        } else {
-          resolve(null);
-        }
-      });
-    });
-   }
+  getUserDetails(): Observable<any> {
+    return this.auth.authState; // authState ya proporciona la información del usuario actual
+  }
 
+
+   
   isLoggedIn() {
     return this.loggedIn;
   }  
@@ -93,34 +83,58 @@ export class AuthService {
         console.error('Error al iniciar sesión:', errorMessage);
       });
    }
+   
+   
 
    async loginWithGoogle() {
-     try {
-       const provider = new GoogleAuthProvider();
-       const userCredential = await signInWithPopup(auth, provider);
-       const user = userCredential.user;
-       if(user && user.email){
-         let name, lastName, mlastName;
-         if(user.displayName) {
-           const displayNameParts = user.displayName.split(' ');
-           name = displayNameParts[0];
-           lastName = displayNameParts[1];
-           mlastName = displayNameParts[2]
-         }
-         await setDoc(doc(db, 'users', user.email), {
-           email: user.email,
-           numControl: user.email.substring(0, 9),
-           lastName: lastName,
-           name: name,
-         });
-       } else{
-         console.error('Error: el usuario no tiene un correo electrónico');
-       }
-     } catch (error) {
-       console.error('Error en el inicio de sesión:', error);
-     }
-   }
-
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      const user: User | null = userCredential.user;
+  
+      if (user && user.email) {
+        let name, lastName, mlastName;
+  
+        if (user.displayName) {
+          const displayNameParts = user.displayName.split(' ');
+  
+          // El primer apellido es la segunda parte del nombre
+          lastName = displayNameParts[1];
+  
+          // Si hay una tercera parte, es el segundo apellido
+          if (displayNameParts.length >= 3) {
+            mlastName = displayNameParts[2];
+          }
+  
+          // El primer nombre es la primera parte del nombre
+          name = displayNameParts[0];
+        }
+  
+        // Verifica si el correo es igual a 's20030178@itsch.edu.mx'
+        if (user.email === 's20030178@itsch.edu.mx') {
+          // Redirige al usuario a la ruta 'home-admin'
+          this.router.navigate(['home-admin']);
+        } else {
+          // Redirige al usuario a la ruta 'home'
+          this.router.navigate(['home']);
+        }
+  
+        // Almacena datos en Firestore
+        await setDoc(doc(db, 'users', user.email), {
+          email: user.email,
+          numControl: user.email.substring(0, 9),
+          lastName: lastName,
+          mlastName: mlastName, // Agregamos el segundo apellido
+          name: name,
+        });
+  
+      } else {
+        console.error('Error: el usuario no tiene un correo electrónico');
+      }
+    } catch (error) {
+      console.error('Error en el inicio de sesión:', error);
+    }
+  }
    async logout() {
      try {
        await signOut(auth);
