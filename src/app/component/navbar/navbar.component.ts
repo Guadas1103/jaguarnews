@@ -12,6 +12,6 @@ export class NavbarComponent {
 
   }
   logOut(){
-    this.authService.logOut();
+    this.authService.logout();
   }
 }

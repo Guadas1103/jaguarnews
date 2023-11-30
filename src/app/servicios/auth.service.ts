@@ -1,87 +1,134 @@
-import { Injectable, NgZone } from "@angular/core";
-import { Router } from "@angular/router";
-import { GoogleAuthProvider } from "firebase/auth";
-import { AngularFireAuth} from '@angular/fire/compat/auth';
-
-
+import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../environment";
+import { Router } from '@angular/router';
+import { Injectable, OnInit } from "@angular/core";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-
 export class AuthService {
-    userData: any;
-    private authTokenKey = 'authToken';
-
-    setAuthToken(token: string): void {
-      localStorage.setItem(this.authTokenKey, token);
-    }
+   private router: Router;
+   private loggedIn = false;
   
-    getAuthToken(): string | null {
-      return localStorage.getItem(this.authTokenKey);
-    }
+   constructor(router: Router,  private fb: FormBuilder,
+    private auth: AngularFireAuth,
+    private firestore: AngularFirestore) {
+     this.router = router;
+
+
+     this.auth.authState.subscribe(user => {
+      if (user) {
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
+    
+  }
+  // Obtener token de autenticación//
+  getAuthToken(): Promise<string | null> {
+    return new Promise((resolve, reject) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          // Obtén el token de autenticación del usuario
+          user.getIdToken().then((token) => {
+            resolve(token);
+          }).catch((error) => {
+            console.error('Error al obtener el token de autenticación:', error);
+            reject(error);
+          });
+        } else {
+          resolve(null);
+        }
+      });
+    });
+   }
+
+  isLoggedIn() {
+    return this.loggedIn;
+  }  
   
-    clearAuthToken(): void {
-      localStorage.removeItem(this.authTokenKey);
+  async register( email: string, password: string, name: string, lastName: string, mLastName: string) {
+    // Validar el correo electrónico
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@itsch\.edu\.mx$/;
+    if (!emailRegex.test(email)) {
+      console.error('Error: Correo electrónico no válido');
+      return;
     }
-
-    constructor(
-        private afAuth: AngularFireAuth,
-        private firebaseAuthenticationService: AngularFireAuth,
-        private router: Router,
-        private ngZone : NgZone
-    ){
-        this.firebaseAuthenticationService.authState.subscribe((user) => {
-            if (user){
-                this.userData = user;
-                localStorage.setItem('user', JSON.stringify(this.userData));
-
-            } else {
-                localStorage.setItem('user', 'null');
-            }
-        })
+    try {
+      // Registrar usuario en Firebase Authentication
+      const userCredential = await this.auth.createUserWithEmailAndPassword(email, password);
+      // Almacenar datos en Firestore
+      const userData = {
+        numControl: email.substring(0, 9),
+        email,
+        name,
+        lastName,
+        mLastName,
+      };
+      await this.firestore.collection('users').doc(email).set(userData);
+      console.log('Usuario registrado con éxito.');
+      
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error);
     }
+  }
 
-    //Login con email y password
-    logWhitEmailAndPassword(email: string, password: string){
-        return this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
-       .then((userCredential) => {
-        this.userData = userCredential.user
-        this.observeUserState()
-       }) 
-       .catch((error: Error) => {
-        alert(error.message);
-       })
-    }
+   async login(email: string, password: string) {
+    return this.auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Usuario registrado exitosamente
+        var user = userCredential.user;
+        // Redirigir al usuario a la página de inicio
+        this.router.navigate(['home']);
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.error('Error al iniciar sesión:', errorMessage);
+      });
+   }
 
-    //Login con Google
-    logWhitGoogleProvider (){
-        return this.firebaseAuthenticationService.signInWithPopup(new GoogleAuthProvider())
-        .then(() => this.observeUserState())
-        .catch((error: Error) => {
-        alert(error.message);
-        })
-    }
+   async loginWithGoogle() {
+     try {
+       const provider = new GoogleAuthProvider();
+       const userCredential = await signInWithPopup(auth, provider);
+       const user = userCredential.user;
+       if(user && user.email){
+         let name, lastName, mlastName;
+         if(user.displayName) {
+           const displayNameParts = user.displayName.split(' ');
+           name = displayNameParts[0];
+           lastName = displayNameParts[1];
+           mlastName = displayNameParts[2]
+         }
+         await setDoc(doc(db, 'users', user.email), {
+           email: user.email,
+           numControl: user.email.substring(0, 9),
+           lastName: lastName,
+           name: name,
+         });
+       } else{
+         console.error('Error: el usuario no tiene un correo electrónico');
+       }
+     } catch (error) {
+       console.error('Error en el inicio de sesión:', error);
+     }
+   }
 
-    observeUserState (){
-        this.firebaseAuthenticationService.authState.subscribe((userState) => {
-            userState && this.ngZone.run(() => this.router.navigate(['home-admin']))
-        })
-    }
-
-    //regresar cuando el usuario esta logged in
-    get isLoggedIn(): boolean {
-        const user = JSON.parse(localStorage.getItem('user')!);
-        return user !== null;
-    }
-
-    // logOut
-    logOut(){
-        return this.firebaseAuthenticationService.signOut().then(() => {
-            localStorage.removeItem('user');
-            this.router.navigate(['login']);
-        })
-    }
-
+   async logout() {
+     try {
+       await signOut(auth);
+       // Redirige al usuario a la ruta 'login'
+       this.router.navigate(['login']);
+     } catch (error) {
+       console.error('Error al cerrar la sesión:', error);
+     }
+   }
 }
+

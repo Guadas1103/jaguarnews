@@ -7,10 +7,15 @@ import { SistemaComponent } from './carreras/sistema/sistema.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-admin.component';
 import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
-import { AuthGuard } from './guards/auth.guards';
+import { AuthGuard } from './login/guard/guard.component';
+
+
+
+
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
+  {path:'register', component: RegisterComponent},
   {path:'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path:'signup', component: RegisterComponent},
   {path:'sistema', component: SistemaComponent},
