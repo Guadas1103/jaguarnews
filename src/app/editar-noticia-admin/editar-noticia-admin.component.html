@@ -98,7 +98,7 @@
                         <tr *ngFor="let p of noticias">
                             <td>{{p.no}}</td>
                             <td>{{p.autor}}</td>
-                            <td>{{p.descripcion}}</td>
+                            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{p.descripcion}}</td>
                             
                             <td>{{p.titulo}}</td>
                             <td>{{p.id}}</td>
@@ -145,35 +145,49 @@
     </div>
     
     <!-- Modal -->
-    <!-- Modal de Modificación de Noticia -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Noticia</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Formulario de Modificación -->
-          <form (submit)="modificarNoticia()">
-            <div class="mb-3">
-              <label for="titulo" class="form-label">Título</label>
-              <input type="text" class="form-control" id="titulo" [(ngModel)]="modP.titulo" name="titulo" required>
-            </div>
-            <div class="mb-3">
-              <label for="descripcion" class="form-label">Descripción</label>
-              <textarea class="form-control" id="descripcion" [(ngModel)]="modP.descripcion" name="descripcion" required></textarea>
-            </div>
-            <!-- Otros campos que puedas tener en tu objeto modP -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" (click)="modificarNoticia()">Guardar</button>
-            </div>
-          </form>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Noticia</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario de Modificación -->
+        <form (submit)="modificarNoticia()">
+          <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="imagen" (change)="onImagenSeleccionada($event)" accept="image/*">
+          </div>
+
+          <div class="mb-3">
+            <img *ngIf="modP.imagenURL" [src]="modP.imagenURL" alt="Imagen actual" class="img-fluid">
+          </div>
+
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" [(ngModel)]="modP.titulo" name="titulo" required>
+            <div class="invalid-feedback" *ngIf="!modP.titulo">El título es obligatorio.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcion" [(ngModel)]="modP.descripcion" name="descripcion" required></textarea>
+            <div class="invalid-feedback" *ngIf="!modP.descripcion">La descripción es obligatoria.</div>
+          </div>
+
+          <!-- ... Otras propiedades que puedas tener en tu objeto modP ... -->
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="modificarNoticia()">Guardar</button>
+          </div>
+        </form>
+        
       </div>
     </div>
   </div>
+</div>
 
       <!-- Modal de Leer mas... 
       <div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
