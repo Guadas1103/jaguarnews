@@ -127,11 +127,12 @@ this.firestore.collection('noticias').doc(noticiaId).get().subscribe(
             categoria: data.categoria,
             fecha: null
           };
-
+          console.log('Fecha:', this.verN.fecha);
         },
         error => {
           console.error('Error al obtener la URL de la imagen:', error);
         }
+        
       );
     } else {
       console.log('No se encontró la noticia con el ID:', noticiaId);
