@@ -44,6 +44,7 @@ import { RegisterModalComponent } from './crud-usuarios/register-modal/register-
 
 
 
+
 @NgModule({
  declarations: [
    AppComponent,

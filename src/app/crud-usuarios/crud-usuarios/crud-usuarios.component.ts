@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { AuthService } from 'src/app/servicios/auth.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
  selector: 'app-crud-usuarios',
@@ -17,11 +17,17 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class CrudUsuariosComponent implements OnInit {
 
  users: any[] = []; // Declarar la variable users
-//  public event: EventEmitter<any> = new EventEmitter();
-modalRef!: BsModalRef;
+ modalRef!: BsModalRef;
 
- constructor(private userService: UserService, private dialog: MatDialog, private afAuth: AngularFireAuth,
-   private modalService: BsModalService, private authService: AuthService, private router: Router) { } 
+ constructor(
+   private userService: UserService,
+   private dialog: MatDialog,
+   private afAuth: AngularFireAuth,
+   private modalService: BsModalService,
+   private authService: AuthService,
+   private router: Router,
+   private toastr: ToastrService // Inyecta ToastrService en el constructor
+ ) {}
 
  ngOnInit() {
    this.getUsers();
@@ -34,53 +40,52 @@ modalRef!: BsModalRef;
          id: e.payload.doc.id,
          ...e.payload.doc.data() as object
        };
-       console.log(user); // Imprime el objeto user en la consola
-       return user;
      });
    });
  }
 
-
-
  // crudusuarios crear nuevo usuario
  openModal() {
-  this.modalRef = this.modalService.show(RegisterModalComponent);
-}
-
+   this.modalRef = this.modalService.show(RegisterModalComponent);
+ }
 
  updateUser(user: any) {
    const dialogRef = this.dialog.open(EditUserModalComponent, {
      data: user
    });
-  
+
    dialogRef.afterClosed().subscribe(result => {
      if (result) {
        this.userService.updateUser(result);
      }
-   }); 
+   });
  }
 
  deleteUser(user: any) {
-   this.userService.deleteUser(user);
-   // Asegúrate de que el usuario esté autenticado antes de eliminarlo
    this.afAuth.currentUser.then(currentUser => {
      if (currentUser) {
        currentUser.delete().then(() => {
-         console.log('Usuario eliminado de Firebase Authentication');
+         this.toastr.success('Usuario eliminado de Firebase Authentication');
+         this.userService.deleteUser(user);
        }).catch(error => {
-         console.error('Error al eliminar el usuario de Firebase Authentication', error);
+         this.toastr.error('Error al eliminar el usuario de Firebase Authentication', error.message);
        });
+     } else {
+       this.toastr.error('El usuario no está autenticado');
      }
    });
  }
+
  navigateToHome() {
-  this.router.navigate(['/home-admin']);
-}
-navigateToUsuario() {
-  this.router.navigate(['/admin-usuarios']);
-}
-navigateToEditar() {
-  this.router.navigate(['/editar-noticia-admin']);
-}
+   this.router.navigate(['/home-admin']);
+ }
+
+ navigateToUsuario() {
+   this.router.navigate(['/admin-usuarios']);
+ }
+
+ navigateToEditar() {
+   this.router.navigate(['/editar-noticia-admin']);
+ }
 }
 
