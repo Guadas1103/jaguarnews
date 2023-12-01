@@ -40,7 +40,6 @@ const routes: Routes = [
   {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent, canActivate: [AuthGuard]},
   {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent, canActivate: [AuthGuard]},
   {path: 'tics', component: TicsComponent},
-  {path: 'admin-usuarios', component: CrudUsuariosComponent, canActivate: [AuthGuard]},
   {path:'bioquimica', component:BioquimicaComponent, canActivate: [AuthGuard]},
   {path:'empresarial', component:EmpresarialComponent, canActivate: [AuthGuard]},
   {path:'industrial', component:IndustrialComponent, canActivate: [AuthGuard]},
@@ -55,7 +54,7 @@ const routes: Routes = [
   {path: 'navbar', component: NavbarComponent, canActivate: [AuthGuard]},
   {path: 'footer', component: FooterComponent, canActivate: [AuthGuard]},
   {path: 'edit-user-modal', component: EditUserModalComponent},
-  {path: 'register-modal', component: RegisterModalComponent}
+  {path: 'register-modal', component: RegisterModalComponent,canActivate: [AuthGuard]}
 
  ];
  

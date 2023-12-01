@@ -8,6 +8,12 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ToastrService } from 'ngx-toastr';
+interface UserData {
+  // Define la estructura de tus datos de usuario
+  name: string;
+  email: string;
+  // ... otras propiedades
+}
 
 @Component({
  selector: 'app-crud-usuarios',
@@ -34,15 +40,15 @@ export class CrudUsuariosComponent implements OnInit {
  }
 
  getUsers() {
-   this.userService.getUsers().subscribe(data => {
-     this.users = data.map(e => {
-       const user = {
-         id: e.payload.doc.id,
-         ...e.payload.doc.data() as object
-       };
-     });
-   });
- }
+  this.userService.getUsers().subscribe(data => {
+    this.users = data.map(e => {
+      const id = e.payload.doc.id;
+      const userData = e.payload.doc.data() as UserData;
+
+      return { id, ...userData };
+    });
+  });
+}
 
  // crudusuarios crear nuevo usuario
  openModal() {
@@ -85,7 +91,7 @@ export class CrudUsuariosComponent implements OnInit {
  }
 
  navigateToEditar() {
-   this.router.navigate(['/editar-noticia-admin']);
+   this.router.navigate(['/edit-user-modal']);
  }
 }
 

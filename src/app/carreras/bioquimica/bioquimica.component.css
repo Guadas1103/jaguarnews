@@ -45,7 +45,9 @@ h2, h1{
       1px 1px 0 #000;
   }
 
-
+  .texto-borde {
+    line-height: 1.5; /* Puedes ajustar este valor según tus preferencias */
+}
 /*velo*************************************************************************************/
 .container-with-background {
     background-image: url('../../../assets/fondo-bioquimica.jpg');

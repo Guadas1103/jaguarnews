@@ -16,7 +16,9 @@
     font-family: 'Bebas Neue', sans-serif;
     /* Otros estilos de botón personalizados */
   }
-
+  .texto-borde {
+    line-height: 1.5; /* Puedes ajustar este valor según tus preferencias */
+}
 
 p{
     font-family: 'Montserrat', sans-serif;

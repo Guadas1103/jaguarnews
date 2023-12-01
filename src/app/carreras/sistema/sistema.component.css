@@ -78,7 +78,9 @@ h2, h1{
     position: relative;
     background-color: #F2F2F2;
 }
-
+.texto-borde {
+    line-height: 1.5; /* Puedes ajustar este valor según tus preferencias */
+}
 .container-xxl{
     width: 100%;
     background-color: #F2F2F2;
