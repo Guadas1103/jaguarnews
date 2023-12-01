@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-<<<<<<< Updated upstream
   registerForm: FormGroup;
   email: string = '';
   password: string = '';
@@ -27,13 +26,6 @@ export class RegisterComponent implements OnInit {
         mLastName: ['', Validators.required],
       });
     
-=======
-  registerForm!: FormGroup;
-  modalRef!: BsModalRef;
-
-  constructor(private fb: FormBuilder,  private authService: AuthService, private modalService: BsModalRef) {
-   
->>>>>>> Stashed changes
   }
 
   ngOnInit(): void {
