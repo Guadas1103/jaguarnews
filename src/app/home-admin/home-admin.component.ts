@@ -25,7 +25,7 @@ export class HomeAdminComponent implements OnInit {
   }
 
   navigateToUsuario() {
-    this.router.navigate(['/crear-usuario-admin']);
+    this.router.navigate(['/admin-usuarios']);
   }
 
   navigateToEditar() {

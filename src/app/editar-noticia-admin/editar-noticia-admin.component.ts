@@ -383,7 +383,9 @@ private actualizarNoticia(imagenURL?: string) {
   const updatedNoticia: any = {
     titulo: this.modP.titulo,
     descripcion: this.modP.descripcion,
-    imagenURL: this.modP.imagenURL
+    imagenURL: this.modP.imagenURL,
+    // Agregar el correo del usuario que hizo la modificación
+    usuarioModificacion: this.correoUsuario
   };
 
   // Agregar la URL de la nueva imagen si está presente
@@ -421,7 +423,7 @@ private actualizarNoticia(imagenURL?: string) {
     this.router.navigate(['/home-admin']);
   }
   navigateToUsuario() {
-    this.router.navigate(['/crear-usuario-admin']);
+    this.router.navigate(['/admin-usuarios']);
   }
   navigateToEditar() {
     this.router.navigate(['/editar-noticia-admin']);

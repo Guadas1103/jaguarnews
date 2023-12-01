@@ -30,7 +30,7 @@
                   </div>
                 </div>
                 <div class="card-form">
-                  <p class="text-center text-muted fs-08 mt-3">O ingresa tus datos</p>
+                  <p class="text-center text-muted fs-08 mt-3">Ingresa tus datos si eres administrador o aún no tines cuenta Instuticional</p>
                   <div class="d-flex align-items-center input-field">
                       <span class="far fa-envelope text-muted"></span>
                       <input type="email" name="email" placeholder="Correo" id="email" #email class="form-control" required>
@@ -40,21 +40,15 @@
                       <input type="password" name="pass" placeholder="Password" id="password" #password class="form-control" required>
                   </div>
 
-                  <div class="d-flex align-items-center input-field">
-                    <label for="role">Rol:</label>
-                    <select id="role" name="role" class="form-control">
-                        <option value="admin">Administrador</option>
-                        <option value="student">Estudiante</option>
-                    </select>
-                 </div>
+                  
 
 
 
                   <div class="d-flex justify-content-center">
-                      <div type="click" (click)="onSubmit()" class="btn btn-primary mt-3">Sign In</div>
+                      <div type="click" (click)="onSubmit()" class="btn btn-primary mt-3">Ingresar</div>
                   </div>
                   <div class="d-flex justify-content-center">
-                    <p>¿No cuentas con un perfil?</p><a routerLink="/register"><u>Registrate</u></a>
+                    <p>¿Aun no tienes correo institucional? </p><a routerLink="/register" ><u (click)="navigateToRegistrar()">Registrate</u></a>
                   </div>
                 </div>
             </div>

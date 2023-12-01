@@ -15,15 +15,15 @@ export class LoginComponent implements OnInit {
 
  ngOnInit(): void {}
 
-  async onSubmit() {
-    try {
-      const result = await this.authService.login(this.email, this.password);
-      console.log('Inicio de sesión exitoso:', result);
-      this.router.navigate(['home']);
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-    }
+ async onSubmit() {
+  try {
+    await this.authService.login(this.email, this.password);
+    console.log('Inicio de sesión exitoso');
+    this.router.navigate(['home']);
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error);
   }
+}
 
 
 
@@ -44,5 +44,9 @@ export class LoginComponent implements OnInit {
     console.error('Error al cerrar sesión:', error);
   }
  }
+
+ navigateToRegistrar() {
+  this.router.navigate(['/register']);
+}
 }
 
