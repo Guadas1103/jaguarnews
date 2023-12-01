@@ -24,10 +24,8 @@ export class RegisterModalComponent implements OnInit{
 }
 
   onSubmit() {
-    const { email, password, name, lastName, mlastName } = this.registerForm.value;
-    this.authService.register(email, password, name, lastName, mlastName);
+    const { email, password, name, lastName, mlastName, rol } = this.registerForm.value;
+    this.authService.register(email, password, name, lastName, mlastName, rol);
     this.registerForm.reset();
    }
-   
-
 }
