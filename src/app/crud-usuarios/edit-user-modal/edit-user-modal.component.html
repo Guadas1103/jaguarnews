@@ -1,40 +1,36 @@
-<h1 mat-dialog-title>Editar Usuario</h1>
-<div mat-dialog-content>
- <mat-grid-list cols="2" rowHeight="100px">
-  <mat-grid-tile>
-    <mat-form-field [style.width.px]=327>
-      <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="data.email" name="email">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-form-field>
-      <mat-label>Nombre</mat-label>
-      <input matInput [(ngModel)]="data.name" name="name">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-form-field>
-      <mat-label>Apellido</mat-label>
-      <input matInput [(ngModel)]="data.lastName" name="lastName">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-form-field>
-      <mat-label>Segundo Apellido</mat-label>
-      <input matInput [(ngModel)]="data.mlastName" name="mlastName">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-form-field>
-      <mat-label>Rol</mat-label>
-      <input matInput [(ngModel)]="data.rol" name="rol">
-    </mat-form-field>
-  </mat-grid-tile>
- </mat-grid-list>
-</div>
-<div mat-dialog-actions>
- <button mat-button mat-dialog-close>Cerrar</button>
- <button mat-button (click)="updateUser()">Guardar</button>
+
+<div class="d-flex justify-content-center">
+  <div class="container">
+    <h1 class="text-center">Editar Usuario</h1>
+    <form>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="data.email" name="email" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="data.name" name="name" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="data.lastName" name="lastName" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="mlastName" class="form-label">Segundo Apellido</label>
+        <input type="text" class="form-control" id="mlastName" [(ngModel)]="data.mlastName" name="mlastName" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="rol" class="form-label">Rol</label>
+        <select class="form-control" id="rol" [(ngModel)]="data.rol" name="rol">
+          <option value="estudiante">Estudiante</option>
+          <option value="administrador">Administrador</option>
+        </select>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-secondary" mat-dialog-close>Cerrar</button>
+        <button class="btn btn-primary" (click)="updateUser()">Guardar</button>
+      </div>
+    </form>
+  </div>
 </div>
 

@@ -38,6 +38,11 @@ import { EmpresarialComponent } from './carreras/empresarial/empresarial.compone
 import { MecatronicaComponent } from './carreras/mecatronica/mecatronica.component';
 import { NanotecnologiaComponent } from './carreras/nanotecnologia/nanotecnologia.component';
 import { TicsComponent } from './carreras/tics/tics.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { RegisterModalComponent } from './crud-usuarios/register-modal/register-modal.component';
+
+
+
 
 
 @NgModule({
@@ -61,6 +66,9 @@ import { TicsComponent } from './carreras/tics/tics.component';
    EmpresarialComponent,
    MecatronicaComponent,
    NanotecnologiaComponent,
+   RegisterModalComponent,
+  
+   
    
  ],
  imports: [
@@ -82,6 +90,7 @@ import { TicsComponent } from './carreras/tics/tics.component';
   MatDialogModule,
   MatInputModule,
   MatGridListModule,
+  ModalModule.forRoot(),
   AngularFireModule.initializeApp(environment.firebase),
  ],
  providers: [ AuthService ],
