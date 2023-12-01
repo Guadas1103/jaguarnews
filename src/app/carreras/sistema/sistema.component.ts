@@ -26,7 +26,7 @@ export interface Noticia {
 export class SistemaComponent implements OnInit {
   noticias: Noticia[] = [];
   verN: Noticia = { no: 0, id: "", autor: "", descripcion: "", titulo: "", imagenURL: "", categoria: "", fecha: null};
-  mensaje = "";
+  mensaje = "No hay novedades por el momento. :v";
 
   constructor(
     private router: Router,
@@ -49,7 +49,7 @@ export class SistemaComponent implements OnInit {
   }
 
   consulta() {
-    this.firestore.collection('noticias').snapshotChanges().subscribe(data => {
+    this.firestore.collection('noticias', ref => ref.orderBy('fecha', 'desc')).snapshotChanges().subscribe(data => {
       let i = 1;
       this.noticias = data.map((p: any) => {
         const docData = p.payload.doc.data();

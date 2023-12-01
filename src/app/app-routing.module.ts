@@ -15,11 +15,11 @@ import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-
 import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
 import { AuthGuard } from './login/guard/guard.component';
 import { CrudUsuariosComponent } from './crud-usuarios/crud-usuarios/crud-usuarios.component';
-<<<<<<< Updated upstream
-=======
 import { EditUserModalComponent } from './crud-usuarios/edit-user-modal/edit-user-modal.component';
 import { RegisterModalComponent } from './crud-usuarios/register-modal/register-modal.component';
->>>>>>> Stashed changes
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FooterComponent } from './component/footer/footer.component';
+
 
 
 
@@ -36,21 +36,26 @@ const routes: Routes = [
   {path:'mecatronica', component:MecatronicaComponent},
   {path:'nanotecnologia', component: NanotecnologiaComponent},
   {path:'sistema', component: SistemaComponent},
-<<<<<<< Updated upstream
   { path: 'home-admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
   {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent, canActivate: [AuthGuard]},
   {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent, canActivate: [AuthGuard]},
   {path: 'tics', component: TicsComponent},
-  {path: 'admin-usuarios', component: CrudUsuariosComponent, canActivate: [AuthGuard]}
-=======
-  { path: 'home-admin', component: HomeAdminComponent },
-  {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent},
-  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent},
-  {path: 'tics', component: TicsComponent},
-  {path: 'crud-usuarios', component: CrudUsuariosComponent},
+  {path: 'admin-usuarios', component: CrudUsuariosComponent, canActivate: [AuthGuard]},
+  {path:'bioquimica', component:BioquimicaComponent, canActivate: [AuthGuard]},
+  {path:'empresarial', component:EmpresarialComponent, canActivate: [AuthGuard]},
+  {path:'industrial', component:IndustrialComponent, canActivate: [AuthGuard]},
+  {path:'mecatronica', component:MecatronicaComponent, canActivate: [AuthGuard]},
+  {path:'nanotecnologia', component: NanotecnologiaComponent, canActivate: [AuthGuard]},
+  {path:'sistema', component: SistemaComponent, canActivate: [AuthGuard]},
+  { path: 'home-admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
+  {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent, canActivate: [AuthGuard]},
+  {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent, canActivate: [AuthGuard]},
+  {path: 'tics', component: TicsComponent, canActivate: [AuthGuard]},
+  {path: 'admin-usuarios', component: CrudUsuariosComponent, canActivate: [AuthGuard]},
+  {path: 'navbar', component: NavbarComponent, canActivate: [AuthGuard]},
+  {path: 'footer', component: FooterComponent, canActivate: [AuthGuard]},
   {path: 'edit-user-modal', component: EditUserModalComponent},
   {path: 'register-modal', component: RegisterModalComponent}
->>>>>>> Stashed changes
 
  ];
  

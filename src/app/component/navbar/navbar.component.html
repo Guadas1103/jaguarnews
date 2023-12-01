@@ -11,8 +11,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse" style="padding: 10px;">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <button type="button" class="btn custom-button" style="margin-right: 30px;">
-                    <a >GENERAL</a>
+                <button type="button" class="btn custom-button" style="margin-right: 30px;" (click)="navigateToHome()">
+                    <a class="nav-item nav-link">GENERAL</a>
                 </button>
 
                 <div ngbDropdown class="btn-group">
@@ -20,21 +20,21 @@
                       CARRERAS
                     </button>
                     <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">TIC´s</a></li>
-                      <li><a class="dropdown-item" href="#">Nanotecnología</a></li>
-                      <li><a class="dropdown-item" href="#">Mecatrónica</a></li>
-                      <li><a class="dropdown-item" href="#">Gestión empresarial</a></li>
-                      <li><a class="dropdown-item" href="#">Bioquímica</a></li>
-                      <li><a class="dropdown-item" href="#">Sistemas computacionales</a></li>
-                      <li><a class="dropdown-item" href="#">Industrial</a></li>
+                      <li><a class="dropdown-item" (click)="navigateToTics()">TIC´s</a></li>
+                      <li><a class="dropdown-item" (click)="navigateToNanotecnologia()">Nanotecnología</a></li>
+                      <li><a class="dropdown-item" (click)="navigateToMecatronica()">Mecatrónica</a></li>
+                      <li><a class="dropdown-item" (click)="navigateToEmpresarial()">Gestión empresarial</a></li>
+                      <li><a class="dropdown-item" (click)="navigateToBioquimica()">Bioquímica</a></li>
+                      <li><a class="dropdown-item" (click)="navigateToSistemas()">Sistemas computacionales</a></li>
+                      <li><a class="dropdown-item" (click)="navigateToIndustrial()">Industrial</a></li>
                     </ul>
                   </div>
-            <button type="button" class="btn btn custom-button" style="margin-right: 30px;">
+            <!-- <button type="button" class="btn btn custom-button" style="margin-right: 30px;">
                 <a href="/carreras" class="nav-item nav-link">NOSOTROS</a>
             </button>
             <button type="button"  class="btn btn custom-button" style="margin-right: 30px; ">
                 <a href="contact.html" class="nav-item nav-link">CONTACTO</a>
-            </button> 
+            </button>  -->
             <button  type="button" (click)="logOut" class="btn btn custom-button"  style="margin-left: 10px;">
                 <a href="index.html" class="nav-item nav-link" >
                     <i class="bi bi-person-circle"></i>

@@ -1,0 +1,86 @@
+.bg {
+    background-color: #D9821B !important;
+}
+
+.bg-noticia {
+    background-color: #ffffff !important;
+}
+.bg-area-noticias {
+    background-color: #F2F2F2 !important;
+}
+.custom-button {
+    background-color: #D9821B; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Estilo de sombra personalizado */
+    font-weight: bold;
+    font-family: 'Bebas Neue', sans-serif;
+    /* Otros estilos de botón personalizados */
+  }
+
+
+p{
+    font-family: 'Montserrat', sans-serif;
+}
+h2, h1{
+    color: #000000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 50px;
+    text-align:left;
+    padding-left: 60px;
+}
+
+.texto h2 {
+    font-size: 5vw;
+  }
+
+.texto-two h1 {
+    font-size: 5vw;
+}
+.texto-borde {
+    color: white;
+    text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+
+
+/*velo*************************************************************************************/
+.container-with-background {
+    background-image: url('../../../assets/fondo-meca.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    background-color: rgba(19, 15, 64, 0.2);
+    z-index: -1;
+  }
+  
+
+  .card{
+    transition: all 400ms ease-out;
+  }
+  
+  /*Tarjetas*************************************************************/
+  .card:hover{
+	box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+	transform: translateY(-3%);
+    }
+
+/*Contenedores*************************************************************/
+.container{
+    width: 100%;
+    position: relative;
+    display: block;
+}
+.container-two{
+    width: 100%;
+    position: relative;
+    background-color: #F2F2F2;
+}
+
+.container-xxl{
+    width: 100%;
+    background-color: #F2F2F2;
+    
+}
