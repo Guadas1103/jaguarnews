@@ -15,6 +15,8 @@ import { CrearUsuarioAdminComponent } from './crear-usuario-admin/crear-usuario-
 import { EditarNoticiaAdminComponent } from './editar-noticia-admin/editar-noticia-admin.component';
 import { AuthGuard } from './login/guard/guard.component';
 import { CrudUsuariosComponent } from './crud-usuarios/crud-usuarios/crud-usuarios.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 
@@ -25,17 +27,19 @@ const routes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path:'signup', component: RegisterComponent},
-  {path:'bioquimica', component:BioquimicaComponent},
-  {path:'empresarial', component:EmpresarialComponent},
-  {path:'insdustrial', component:IndustrialComponent},
-  {path:'mecatronica', component:MecatronicaComponent},
-  {path:'nanotecnologia', component: NanotecnologiaComponent},
-  {path:'sistema', component: SistemaComponent},
+  {path:'bioquimica', component:BioquimicaComponent, canActivate: [AuthGuard]},
+  {path:'empresarial', component:EmpresarialComponent, canActivate: [AuthGuard]},
+  {path:'industrial', component:IndustrialComponent, canActivate: [AuthGuard]},
+  {path:'mecatronica', component:MecatronicaComponent, canActivate: [AuthGuard]},
+  {path:'nanotecnologia', component: NanotecnologiaComponent, canActivate: [AuthGuard]},
+  {path:'sistema', component: SistemaComponent, canActivate: [AuthGuard]},
   { path: 'home-admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
   {path: 'crear-usuario-admin', component: CrearUsuarioAdminComponent, canActivate: [AuthGuard]},
   {path: 'editar-noticia-admin', component: EditarNoticiaAdminComponent, canActivate: [AuthGuard]},
-  {path: 'tics', component: TicsComponent},
-  {path: 'admin-usuarios', component: CrudUsuariosComponent, canActivate: [AuthGuard]}
+  {path: 'tics', component: TicsComponent, canActivate: [AuthGuard]},
+  {path: 'admin-usuarios', component: CrudUsuariosComponent, canActivate: [AuthGuard]},
+  {path: 'navbar', component: NavbarComponent, canActivate: [AuthGuard]},
+  {path: 'footer', component: FooterComponent, canActivate: [AuthGuard]}
 
  ];
  
