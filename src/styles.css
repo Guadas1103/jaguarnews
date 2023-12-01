@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+
+
+
 .page-header {
     background-image: url('/assets/fondo.jpg'); /* Ruta a tu imagen en la carpeta de activos */
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */

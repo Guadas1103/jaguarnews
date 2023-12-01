@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';  // Agrega esta línea
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
 
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+<<<<<<< Updated upstream
   registerForm: FormGroup;
   email: string = '';
   password: string = '';
@@ -25,6 +27,13 @@ export class RegisterComponent implements OnInit {
         mLastName: ['', Validators.required],
       });
     
+=======
+  registerForm!: FormGroup;
+  modalRef!: BsModalRef;
+
+  constructor(private fb: FormBuilder,  private authService: AuthService, private modalService: BsModalRef) {
+   
+>>>>>>> Stashed changes
   }
 
   ngOnInit(): void {
@@ -37,6 +46,7 @@ export class RegisterComponent implements OnInit {
       rol: ['estudiante']
     });
   }
+
 
   async onSubmit() {
     if (this.registerForm.valid) {

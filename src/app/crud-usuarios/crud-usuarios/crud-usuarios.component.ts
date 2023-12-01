@@ -2,7 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/servicios/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserModalComponent } from '../edit-user-modal/edit-user-modal.component';
+<<<<<<< Updated upstream
 import { Router } from '@angular/router';
+=======
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
+import { AuthService } from 'src/app/servicios/auth.service';
+
+>>>>>>> Stashed changes
 
 @Component({
  selector: 'app-crud-usuarios',
@@ -12,8 +20,15 @@ import { Router } from '@angular/router';
 export class CrudUsuariosComponent implements OnInit {
 
  users: any[] = []; // Declarar la variable users
+//  public event: EventEmitter<any> = new EventEmitter();
+modalRef!: BsModalRef;
 
+<<<<<<< Updated upstream
  constructor(private userService: UserService, private dialog: MatDialog, private router: Router) { } // Inyecta MatDialog aquí
+=======
+ constructor(private userService: UserService, private dialog: MatDialog, private afAuth: AngularFireAuth,
+   private modalService: BsModalService, private authService: AuthService) { } 
+>>>>>>> Stashed changes
 
  ngOnInit() {
    this.getUsers();
@@ -32,6 +47,14 @@ export class CrudUsuariosComponent implements OnInit {
    });
  }
 
+
+
+ // crudusuarios crear nuevo usuario
+ openModal() {
+  this.modalRef = this.modalService.show(RegisterModalComponent);
+}
+
+
  updateUser(user: any) {
    const dialogRef = this.dialog.open(EditUserModalComponent, {
      data: user
@@ -46,6 +69,16 @@ export class CrudUsuariosComponent implements OnInit {
 
  deleteUser(user: any) {
    this.userService.deleteUser(user);
+   // Asegúrate de que el usuario esté autenticado antes de eliminarlo
+   this.afAuth.currentUser.then(currentUser => {
+     if (currentUser) {
+       currentUser.delete().then(() => {
+         console.log('Usuario eliminado de Firebase Authentication');
+       }).catch(error => {
+         console.error('Error al eliminar el usuario de Firebase Authentication', error);
+       });
+     }
+   });
  }
  navigateToHome() {
   this.router.navigate(['/home-admin']);
