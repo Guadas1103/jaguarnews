@@ -1,140 +1,113 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-
-.bg {
-    background-color: #D9821B !important;
+/* Navbar */
+.navbar {
+    background-color: #D98218;
+    padding: 10px;
 }
 
-.bg-noticia {
-    background-color: #ffffff !important;
+/* Navbar Brand */
+.navbar-brand img {
+    width: 150px;
 }
-.bg-area-noticias {
-    background-color: #F2F2F2 !important;
-}
+
+/* Botón personalizado */
 .custom-button {
-    background-color: #D9821B; /* Color de fondo del botón */
-    color: #fff; /* Color del texto del botón */
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Estilo de sombra personalizado */
-    font-weight: bold;
-    font-family: 'Bebas Neue', sans-serif;
-    /* Otros estilos de botón personalizados */
-  }
+    background-color: #FFFFFF;
+    color: #401801;
+    border: 1px solid #401801;
+    padding: 5px 10px;
+    text-decoration: none;
+}
 
-  /* Footer */
-.footer {
-    background-color: #8C0335;
+.custom-button:hover {
+    background-color: #D98218;
+    color: #FFFFFF;
+}
+
+/* Dropdown */
+.btn-group .btn-custom-button {
+    background-color: #FFFFFF;
+    color: #401801;
+    border: 1px solid #401801;
+    margin-right: 30px;
+}
+
+.btn-group .btn-custom-button:hover {
+    background-color: #D98218;
+    color: #FFFFFF;
+}
+
+.btn-group .dropdown-menu {
+    background-color: #FFFFFF;
+    border: 1px solid #401801;
+}
+
+.dropdown-item {
+    color: #401801;
+}
+
+.dropdown-item:hover {
+    background-color: #D98218;
+    color: #FFFFFF;
+}
+.container-two{
+    width: 100%;
+    position: relative;
+    background-color: #F2F2F2;
+}
+
+/* Botones adicionales */
+.btn-editar {
+    background-color: #401801;
+    color: #FFFFFF;
+    border: 1px solid #401801;
+    margin-right: 30px;
+}
+
+.btn-usuario {
+    background-color: #401801;
+    color: #FFFFFF;
+    border: 1px solid #401801;
+    margin-right: 30px;
+}
+/*Contenedores*************************************************************/
+.container{
+    width: 100%;
+    position: relative;
+    display: block;
+}
+.container-two{
+    width: 100%;
+    position: relative;
+    background-color: #F2F2F2;
+}
+
+.container-xxl{
+    width: 100%;
+    background-color: #F2F2F2;
     
 }
-
-.footer .btn.btn-social:hover {
-    color: var(--primary);
-}
-
-.footer .btn.btn-link {
-    display: block;
-    margin-bottom: 5px;
-    padding: 0;
-    text-align: left;
+.btn-usuario:hover,
+.btn-editar:hover {
+    background-color: #D98218;
     color: #FFFFFF;
-    font-size: 15px;
-    font-weight: normal;
-    text-transform: capitalize;
-    transition: .3s;
 }
-
-.footer .btn.btn-link::before {
-    position: relative;
-    content: "\f105";
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    margin-right: 10px;
-}
-
-.footer .btn.btn-link:hover {
-    letter-spacing: 1px;
-    box-shadow: none;
-}
-
-.footer .footer-menu a:last-child {
-    margin-right: 0;
-    padding-right: 0;
-    border-right: none;
-}
-  .with-shadow {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajusta los valores según tu preferencia */
-}
-
-/* Button */
-.btn {
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: .5s;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
-}
-
-.btn.btn-primary,
-.btn.btn-secondary {
-background-color: #D9731A; /* Color de fondo */
-  color: #0D0D0D; /* Color del texto */
-  border: none; /* Borde del botón */
-  padding: 8px; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  font-size: 30px;
-  text-align: center; /* Alineación del texto */
-
-  display: inline-block; /* Mostrar en línea */
-  font-size: 16px; /* Tamaño de fuente */
-  margin: 2px; /* Márgenes externos */
-  
-}
-
-.btn-square {
-    width: 38px;
-    height: 38px;
-}
-
-.btn-sm-square {
-    width: 32px;
-    height: 32px;
-}
-
-.btn-lg-square {
-    width: 48px;
-    height: 48px;
-}
-
-.btn-square,
-.btn-sm-square,
-.btn-lg-square {
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: normal;
-    border-radius: 2px;
-}
-
-/**** Template CSS ****/
-:root {
-    --primary: #D98218;
-    --secondary: #D9731A;
-    --light: #F2F2F2;
-    --dark: #A6033F;
+  /* Footer */
+  .footer {
+    background-color: #D98218;
+    color: #FFFFFF;
   }
   
-  .fw-medium {
-    font-weight: 600 !important;
+  .footer i {
+    color: #A6033F;
   }
   
-  .back-to-top {
-    position: fixed;
-    display: none;
-    right: 45px;
-    bottom: 45px;
-    z-index: 99;
+  .footer a {
+    color: #A6033F;
   }
-
-
+  
+  .footer a:hover {
+    color: #D9731A;
+  }

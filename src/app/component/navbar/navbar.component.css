@@ -1,140 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-
-.bg {
-    background-color: #D9821B !important;
+/* Navbar */
+.navbar {
+    background-color: #D98218; /* Color de fondo del navbar */
+    padding: 10px;
 }
 
-.bg-noticia {
-    background-color: #ffffff !important;
-}
-.bg-area-noticias {
-    background-color: #F2F2F2 !important;
-}
+/* Botones en el navbar */
 .custom-button {
-    background-color: #D9821B; /* Color de fondo del botón */
-    color: #fff; /* Color del texto del botón */
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Estilo de sombra personalizado */
-    font-weight: bold;
-    font-family: 'Bebas Neue', sans-serif;
-    /* Otros estilos de botón personalizados */
-  }
-
-  /* Footer */
-.footer {
-    background-color: #8C0335;
-    
+    background-color: #A6033F; /* Color de fondo del botón */
+    color: #FFFFFF; /* Color del texto del botón */
+    border: 1px solid #D98218; /* Borde del botón */
 }
 
-.footer .btn.btn-social:hover {
-    color: var(--primary);
+.custom-button:hover {
+    background-color: #D9731A; /* Cambio de color al pasar el ratón */
+    border: 1px solid #D9731A;
 }
 
-.footer .btn.btn-link {
-    display: block;
-    margin-bottom: 5px;
-    padding: 0;
-    text-align: left;
+/* Ajuste para cambiar el color del texto a blanco al pasar el mouse sobre el botón */
+.custom-button:hover .nav-item.nav-link {
     color: #FFFFFF;
-    font-size: 15px;
-    font-weight: normal;
-    text-transform: capitalize;
-    transition: .3s;
 }
 
-.footer .btn.btn-link::before {
-    position: relative;
-    content: "\f105";
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    margin-right: 10px;
+/* Navbar Brand */
+.navbar-brand img {
+    width: 150px;
 }
 
-.footer .btn.btn-link:hover {
-    letter-spacing: 1px;
-    box-shadow: none;
+/* Botón personalizado */
+.custom-button {
+    background-color: #D98218;
+    color: #FFFFFF;
+    border: 1px solid #D98218;
+    padding: 5px 10px;
+    text-decoration: none;
 }
 
-.footer .footer-menu a:last-child {
-    margin-right: 0;
-    padding-right: 0;
-    border-right: none;
-}
-  .with-shadow {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajusta los valores según tu preferencia */
+.custom-button:hover {
+    background-color: #401801;
+    color: #FFFFFF;
 }
 
-/* Button */
-.btn {
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: .5s;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
+/* Dropdown */
+.btn-group .btn-custom-button {
+    background-color: #D98218;
+    color: #FFFFFF;
+    border: 1px solid #D98218;
+    margin-right: 30px;
 }
 
-.btn.btn-primary,
-.btn.btn-secondary {
-background-color: #D9731A; /* Color de fondo */
-  color: #0D0D0D; /* Color del texto */
-  border: none; /* Borde del botón */
-  padding: 8px; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  font-size: 30px;
-  text-align: center; /* Alineación del texto */
-
-  display: inline-block; /* Mostrar en línea */
-  font-size: 16px; /* Tamaño de fuente */
-  margin: 2px; /* Márgenes externos */
-  
+.btn-group .btn-custom-button:hover {
+    background-color: #FFFFFF;
+    color: #FFFFFF;
+    border: 1px solid #D98218;
 }
 
-.btn-square {
-    width: 38px;
-    height: 38px;
+.btn-group .dropdown-menu {
+    background-color: #D98218;
+    border: 1px solid #D98218;
 }
 
-.btn-sm-square {
-    width: 32px;
-    height: 32px;
+.dropdown-item {
+    color: #401801;
 }
 
-.btn-lg-square {
-    width: 48px;
-    height: 48px;
+.dropdown-item:hover {
+    background-color: #401801;
+    color: #FFFFFF;
 }
-
-.btn-square,
-.btn-sm-square,
-.btn-lg-square {
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: normal;
-    border-radius: 2px;
-}
-
-/**** Template CSS ****/
-:root {
-    --primary: #D98218;
-    --secondary: #D9731A;
-    --light: #F2F2F2;
-    --dark: #A6033F;
-  }
-  
-  .fw-medium {
-    font-weight: 600 !important;
-  }
-  
-  .back-to-top {
-    position: fixed;
-    display: none;
-    right: 45px;
-    bottom: 45px;
-    z-index: 99;
-  }
-
-

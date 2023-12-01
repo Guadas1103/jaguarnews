@@ -69,30 +69,28 @@
             <div class="col"></div>
         </div>
         <div class="row">
-            <div class="col">
-                <table class="table table table-success table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Autor</th>
-                            <th>Descripcion</th>
-                            
-                            <th>Titulo</th>
-                            <th>ID</th>
-                            <th>categoria</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of noticias">
-                            <td>{{p.no}}</td>
-                            <td>{{p.autor}}</td>
-                            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{ p.descripcion.slice(0, 40) }}</td>
-                            
-                            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{p.titulo.slice(0, 40)}}</td>
-                            <td>{{p.id}}</td>
-                            <td>{{p.categoria}}</td>
-                            <td class="text-end">
+          <div class="col">
+              <table class="table table-bordered border-primary">
+                  <thead>
+                      <tr>
+                          <th>No</th>
+                          <th>Autor</th>
+                          <th>Descripcion</th>
+                          <th>Titulo</th>
+                          <th>ID</th>
+                          <th>Categoria</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let p of noticias">
+                          <td>{{p.no}}</td>
+                          <td>{{p.autor}}</td>
+                          <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{ p.descripcion.slice(0, 40) }}</td>
+                          <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{p.titulo.slice(0, 40)}}</td>
+                          <td>{{p.id}}</td>
+                          <td>{{p.categoria}}</td>
+                          <td class="text-end">
 
                               <div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable">
@@ -116,21 +114,23 @@
                                   </div>
                                 </div>
                               </div>
-                                <button class="btn btn-outline-secondary" (click)="verNoticia(p.id)" data-bs-toggle="modal" data-bs-target="#leerMas">
-                                   <i class="bi bi-eye-fill"></i>
-                                </button>
-                                &nbsp;
-                                <button class="btn btn-outline-success" (click)="editarNoticia(p)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="bi bi-pencil-fill"></i></button>
-                                &nbsp;
-                                <button class="btn btn-outline-danger"(click)="borrarNoticia(p.id)"><i class="bi bi-trash-fill"></i></button>
-                                
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                              <button class="btn btn-outline-secondary" (click)="verNoticia(p.id)" data-bs-toggle="modal" data-bs-target="#leerMas">
+                                <i class="bi bi-eye-fill"></i>
+                            </button>
+                            &nbsp;
+                            <button class="btn btn-outline-success" (click)="editarNoticia(p)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                            &nbsp;
+                            <button class="btn btn-outline-danger"(click)="borrarNoticia(p.id)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
     </div>
     
     <!-- Modal -->
@@ -178,29 +178,5 @@
   </div>
 </div>
 
-      <!-- Modal de Leer mas... 
-      <div class="modal fade" id="leerMas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Noticia title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="col-md-12 ms-auto justify-content-md-start mt-auto">
-                    <p>Autor</p>
-                </div>
-                <img src="../../../assets/noticias_prueba.jpg" class="img-fluid" alt="Imagen en grande">
-                <div class="col-md-12 ms-auto justify-content-md-start mt-auto pt-2">
-                    <p>Buenos días #FuturosIngenierosEnSistemas 😎 Un día como hoy pero de 1815 hace George Boole, considerado como uno de los fundadores del campo de las Ciencias de la Computación.</p>
-                </div>               
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-     FIN: Modal de Leer mas.. -->
-
+    
 </body>

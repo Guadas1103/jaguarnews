@@ -1,13 +1,4 @@
-<div class="container-fluid bg-light p-0 sticky-top" >
-    <nav class="navbar navbar-expand-lg shadow sticky-top p-0 bg">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center px-4 px-lg-5" href="#">
-                <img src="../../assets/Logo_JaguarNews.png" width="150" class="d-inline-block align-top" alt="">
-                &nbsp;
-            </a>
-        </div>
-    </nav>
-</div>
+
 <div class="bubbles">
     <div class="circle"></div>
     <div class="circle"></div>
@@ -19,17 +10,10 @@
    
         <div class="form-card">
             <div class="card">
-                <div class="card-head bg-white">
-                  <p class="m-0 text-center fs-08">Inicio de Sesión </p>
-                  <div class="d-flex align-items-center justify-content-center my-2">
-                      <div type="click" (click)="loginWithGoogle()" class="btn btn-default mx-3">
-                          <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                              alt="">
-                          <span>Google</span>
-                      </div>
+                <div class="card-head d-flex align-items-center justify-content-center">
+                    <img src="../../assets/Logo_JaguarNews.png" width="150" class="d-inline-block align-top" alt="">
                   </div>
-                </div>
-                <div class="card-form">
+                    <div class="card-form">
                   <p class="text-center text-muted fs-08 mt-3">Ingresa tus datos si eres administrador o aún no tines cuenta Instuticional</p>
                   <div class="d-flex align-items-center input-field">
                       <span class="far fa-envelope text-muted"></span>
@@ -40,15 +24,18 @@
                       <input type="password" name="pass" placeholder="Password" id="password" #password class="form-control" required>
                   </div>
 
-                  
-
-
 
                   <div class="d-flex justify-content-center">
                       <div type="click" (click)="onSubmit()" class="btn btn-primary mt-3">Ingresar</div>
                   </div>
                   <div class="d-flex justify-content-center">
                     <p>¿Aun no tienes correo institucional? </p><a routerLink="/register" ><u (click)="navigateToRegistrar()">Registrate</u></a>
+                  </div>
+                  <div class="text-center">
+                    <div type="click" (click)="loginWithGoogle()" class="btn btn-default mx-3">
+                      <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="">
+                      <span>Google</span>
+                    </div>
                   </div>
                 </div>
             </div>

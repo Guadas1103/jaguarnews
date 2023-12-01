@@ -1,0 +1,98 @@
+/* Estilos globales */
+body {
+    background-color: #F2F2F2;
+    color: #0D0D0D;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #D98218;
+}
+
+/* Card */
+.card {
+    background-color: #F2F2F2;
+    border: 1px solid #A6033F;
+}
+
+/* Card Head */
+.card-head {
+    background-color: #A6033F;
+}
+
+/* Texto dentro de Card Head */
+.card-head p {
+    color: #D9731A;
+}
+
+/* Botón Google */
+.btn-default {
+    background-color: #FFFFFF;
+    color: #401801;
+    border: 1px solid #401801;
+}
+
+/* Botón de inicio de sesión */
+.btn-primary {
+    background-color: #401801;
+    color: #FFFFFF;
+    border: 1px solid #401801;
+}
+
+/* Enlaces de registro */
+p a {
+    color: #401801;
+}
+
+p a:hover {
+    color: #D98218;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #D98218;
+    color: #FFFFFF;
+}
+
+/* Iconos en el pie de página */
+.footer i {
+    color: #A6033F;
+}
+
+/* Enlaces en el pie de página */
+.footer a {
+    color: #A6033F;
+}
+
+.footer a:hover {
+    color: #D9731A;
+}
+/* Estilos para la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    border: 1px solid #D98218; /* Color del borde de las celdas */
+    padding: 8px;
+}
+
+.table thead {
+    background-color: #A6033F; /* Color de fondo del encabezado de la tabla */
+    color: #FFFFFF; /* Color del texto del encabezado de la tabla */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #D9731A; /* Color de fondo de las filas impares */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #F2F2F2; /* Color de fondo de las filas pares */
+}
+
+/* Estilos para los botones en la celda final */
+.table .text-end button {
+    margin-right: 5px;
+}

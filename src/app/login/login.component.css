@@ -166,7 +166,7 @@ body::-webkit-scrollbar {
     border: none;
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: 0 5px 15px #975ccfa1;
+    box-shadow: 0 5px 15px #8C0335;
 }
 
 .container .card .card-head {
@@ -242,4 +242,52 @@ body::-webkit-scrollbar {
     .container .card {
         min-width: 300px;
     }
+}
+/* Estilos globales */
+body {
+    background-color: #F2F2F2;
+    color: #0D0D0D;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #401801;
+}
+
+/* Card */
+.card {
+    background-color: #F2F2F2;
+    border: 1px solid #D9821B;
+}
+
+/* Card Head */
+.card-head {
+    background-color: #D9821B;
+}
+
+/* Texto dentro de Card Head */
+.card-head p {
+    color: #8C0335;
+}
+
+/* Botón Google */
+.btn-default {
+    background-color: #FFFFFF;
+    color: #401801;
+    border: 1px solid #401801;
+}
+
+/* Botón de inicio de sesión */
+.btn-primary {
+    background-color: #401801;
+    color: #FFFFFF;
+    border: 1px solid #401801;
+}
+
+/* Enlaces de registro */
+p a {
+    color: #401801;
+}
+p a:hover {
+    color: #D9821B;
 }

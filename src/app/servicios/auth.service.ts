@@ -75,7 +75,7 @@ export class AuthService {
   }
 }
 
-async login(email: string, password: string): Promise<UserDocumentData | null> {
+async login(email: string, password: string): Promise<void> {
   try {
     // Autenticar con correo y contraseña de Google
     const userCredential = await this.auth.signInWithEmailAndPassword(email, password);
@@ -90,106 +90,96 @@ async login(email: string, password: string): Promise<UserDocumentData | null> {
         const userData = userDoc.data() as UserDocumentData;
 
         if (userData.rol) {
-          // Verificar el rol del usuario
+          // Verificar el rol del usuario y redirigir
           if (userData.rol === 'administrador') {
-            // Redirigir al usuario a la página de inicio para administradores
             this.router.navigate(['admin-home']);
           } else if (userData.rol === 'estudiante') {
-            // Redirigir al usuario a la página de inicio para estudiantes
             this.router.navigate(['home']);
           } else {
             console.error('Error: Rol no reconocido');
-            // Puedes manejar otros roles según sea necesario
           }
         } else {
           console.error('Error: El campo "rol" no existe en el documento del usuario');
-          throw new Error('Campo "rol" no existe en el documento del usuario.');
         }
       } else {
         console.error('Error: No se encontró el documento del usuario o el documento no existe');
-        throw new Error('No se encontró el documento del usuario o el documento no existe.');
       }
     } else {
       console.error('Error: No se pudo obtener el usuario después de iniciar sesión');
-      throw new Error('No se pudo obtener el usuario después de iniciar sesión.');
     }
   } catch (error) {
     console.error('Error al iniciar sesión:', error);
-    throw error;
+    // Manejar el error según tus necesidades (por ejemplo, mostrar un mensaje al usuario)
   }
-  throw new Error('Error en el inicio de sesión');
 }
    
-   
 
-  async loginWithGoogle() {
-    try {
-      const provider = new GoogleAuthProvider();
-      const userCredential = await signInWithPopup(auth, provider);
-      const user: User | null = userCredential.user;
-  
-      if (user && user.email) {
-        let name, lastName, mlastName;
-  
-        if (user.displayName) {
-          const displayNameParts = user.displayName.split(' ');
-  
-          // El primer apellido es la segunda parte del nombre
-          lastName = displayNameParts[1];
-  
-          // Si hay una tercera parte, es el segundo apellido
-          if (displayNameParts.length >= 3) {
-            mlastName = displayNameParts[2];
-          }
-  
-          // El primer nombre es la primera parte del nombre
-          name = displayNameParts[0];
-        }
-  
-        // Verifica si el correo es igual a 's20030178@itsch.edu.mx'
-        if (user.email === 's20030178@itsch.edu.mx') {
-          // Redirige al usuario a la ruta 'home-admin'
-          this.router.navigate(['home-admin']);
-  
-          // Almacena datos en Firestore y asigna el rol de "administrador"
-          await setDoc(doc(db, 'users', user.email), {
-            email: user.email,
-            numControl: user.email.substring(0, 9),
-            lastName: lastName,
-            mlastName: mlastName,
-            name: name,
-            rol: 'administrador',
-          });
-        } else {
-          // Redirige al usuario a la ruta 'home'
-          this.router.navigate(['home']);
-  
-          // Almacena datos en Firestore y asigna el rol de "estudiante"
-          await setDoc(doc(db, 'users', user.email), {
-            email: user.email,
-            numControl: user.email.substring(0, 9),
-            lastName: lastName,
-            mlastName: mlastName,
-            name: name,
-            rol: 'estudiante',
-          });
-        }
-      } else {
-        console.error('Error: el usuario no tiene un correo electrónico');
+async loginWithGoogle() {
+  try {
+    const provider = new GoogleAuthProvider();
+    const userCredential = await signInWithPopup(auth, provider);
+    const user: User | null = userCredential.user;
+
+    if (user && user.email) {
+      // Asigna el rol de "estudiante" por defecto
+      let rol = 'estudiante';
+
+      // Verifica si el correo electrónico es igual a 's20030178@itsch.edu.mx'
+      if (user.email === 's20030178@itsch.edu.mx') {
+        rol = 'administrador';
       }
+
+      let name, lastName, mlastName;
+
+      if (user.displayName) {
+        const displayNameParts = user.displayName.split(' ');
+
+        // El primer apellido es la segunda parte del nombre
+        lastName = displayNameParts[1];
+
+        // Si hay una tercera parte, es el segundo apellido
+        if (displayNameParts.length >= 3) {
+          mlastName = displayNameParts[2];
+        }
+
+        // El primer nombre es la primera parte del nombre
+        name = displayNameParts[0];
+      }
+
+      // Almacena datos en Firestore y asigna el rol correspondiente
+      await setDoc(doc(db, 'users', user.email), {
+        email: user.email,
+        numControl: user.email.substring(0, 9),
+        lastName: lastName,
+        mlastName: mlastName,
+        name: name,
+        rol: rol,
+      });
+
+      // Redirige al usuario según su rol
+      if (rol === 'estudiante') {
+        this.router.navigate(['home']);
+      } else if (rol === 'administrador') {
+        this.router.navigate(['home-admin']);
+      }
+    } else {
+      console.error('Error: el usuario no tiene un correo electrónico');
+    }
+  } catch (error) {
+    console.error('Error en el inicio de sesión:', error);
+  }
+}
+
+  async logout() {
+    try {
+      // Cierra sesión con Firebase
+      await this.auth.signOut();
+
+      // Redirige al usuario a la ruta 'login'
+      this.router.navigate(['login']);
     } catch (error) {
-      console.error('Error en el inicio de sesión:', error);
+      console.error('Error al cerrar la sesión:', error);
     }
   }
-
-   async logout() {
-     try {
-       await signOut(auth);
-       // Redirige al usuario a la ruta 'login'
-       this.router.navigate(['login']);
-     } catch (error) {
-       console.error('Error al cerrar la sesión:', error);
-     }
-   }
 }
 

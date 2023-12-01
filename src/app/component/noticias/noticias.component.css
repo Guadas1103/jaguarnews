@@ -49,4 +49,8 @@ h2, h1{
     display: block;
 }
 
-
+.container-two{
+    width: 100%;
+    position: relative;
+    background-color: #F2F2F2;
+}

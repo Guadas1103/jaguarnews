@@ -1,0 +1,53 @@
+/* Estilos generales */
+body {
+    background-color: #F2F2F2; /* Fondo general */
+    color: #0D0D0D; /* Texto general */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #D98218; /* Color de fondo del navbar */
+}
+
+/* Botones en el navbar */
+.custom-button {
+    background-color: #D9731A; /* Color de fondo del botón */
+    color: #FFFFFF; /* Color del texto del botón */
+    border: 1px solid #D98218; /* Borde del botón */
+}
+
+.custom-button:hover {
+    
+    background-color: #A6033F; /* Cambio de color al pasar el ratón */
+    border: 1px solid #D9731A;
+}
+
+/* Carrusel */
+#header-carousel {
+    background-color: #F2F2F2; /* Color de fondo del carrusel */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #D98218; /* Color de los botones de navegación */
+}
+
+/* Pie de página */
+.footer {
+    background-color: #0D0D0D; /* Color de fondo del pie de página */
+    color: #F2F2F2; /* Color del texto del pie de página */
+}
+
+/* Iconos en el pie de página */
+.footer i {
+    color: #D9731A; /* Color de los iconos */
+}
+
+/* Enlaces en el pie de página */
+.footer a {
+    color: #D9731A; /* Color de los enlaces */
+}
+
+.footer a:hover {
+    color: #A6033F; /* Cambio de color al pasar el ratón */
+}
