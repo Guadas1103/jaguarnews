@@ -47,8 +47,8 @@ export class AuthService {
   }  
 
   // AuthService crear nuevo usuario en crud-usuarios
-async createUser(email: string, password: string, name: string, lastName: string, mlastName: string) {
-  return await this.register(email, password, name, lastName, mlastName);
+async createUser(email: string, password: string, name: string, lastName: string, mlastName: string, rol:string) {
+  return await this.register(email, password, name, lastName, mlastName, rol);
 }
 
   

@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/servicios/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserModalComponent } from '../edit-user-modal/edit-user-modal.component';
-<<<<<<< Updated upstream
 import { Router } from '@angular/router';
-=======
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 
->>>>>>> Stashed changes
 
 @Component({
  selector: 'app-crud-usuarios',
@@ -23,12 +20,8 @@ export class CrudUsuariosComponent implements OnInit {
 //  public event: EventEmitter<any> = new EventEmitter();
 modalRef!: BsModalRef;
 
-<<<<<<< Updated upstream
- constructor(private userService: UserService, private dialog: MatDialog, private router: Router) { } // Inyecta MatDialog aquí
-=======
  constructor(private userService: UserService, private dialog: MatDialog, private afAuth: AngularFireAuth,
-   private modalService: BsModalService, private authService: AuthService) { } 
->>>>>>> Stashed changes
+   private modalService: BsModalService, private authService: AuthService, private router: Router) { } 
 
  ngOnInit() {
    this.getUsers();
